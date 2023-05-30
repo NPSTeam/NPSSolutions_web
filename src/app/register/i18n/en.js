@@ -1,0 +1,28 @@
+const locale = {
+  LOGIN: 'Login',
+  WELCOME: 'Welcome',
+  EMAIL: 'Email',
+  PASSWORD: 'Password',
+  LOGIN_BY_EMAIL: 'Login by email',
+  PLEASE_ENTER_YOUR_EMAIL: 'Please enter your email',
+  PLEASE_ENTER_YOUR_PASSWORD: 'Please enter your password',
+  YOU_MUST_ENTER_A_VALID_EMAIL: 'You must enter a valid email',
+  PASSWORD_IS_TOO_SHORT_SHOULD_BE_4_CHARS_MINIMUM:
+    'Password is too short - should be 4 chars minimum',
+  CONFIRM: 'Confirm',
+  SIGN_UP: 'Sign up',
+  NAME: 'Name',
+  DISPLAY_NAME: 'Display name',
+  CANCEL: 'Cancel',
+  PLEASE_ENTER_YOUR_NAME: 'Please enter your name',
+  SIGN_UP_SUCCESSFUL: 'Sign up successful',
+  SIGN_UP_FAILED: 'Sign up failed',
+  EMAIL_EXISTED: 'Email existed',
+  GO_BACK_TO_LOGIN: 'Go back to login',
+  ALREADY_HAVE_AN_ACCOUNT: 'Already have an account?',
+  BACK_TO_DASHBOARD: 'Back to dashboard',
+  BACK: 'Back',
+  AVATAR: 'Avatar',
+  PHONE_NUMBER: 'Phone number',
+};
+export default locale;

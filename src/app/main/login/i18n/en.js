@@ -1,0 +1,27 @@
+const locale = {
+  LOGIN: 'Login',
+  WELCOME: 'Welcome',
+  FORGOT_PASSWORD: 'Forgot password',
+  EMAIL: 'Email',
+  PASSWORD: 'Password',
+  PHONE_NUMBER: 'Phone number',
+  LOGIN_BY_EMAIL: 'Login by email',
+  LOGIN_BY_PHONE_NUMBER: 'Login by phone number',
+  PLEASE_ENTER_YOUR_EMAIL: 'Please enter your email',
+  PLEASE_ENTER_YOUR_PASSWORD: 'Please enter your password',
+  PLEASE_ENTER_YOUR_PHONE_NUMBER: 'Please enter your phone number',
+  PLEASE_ENTER_YOUR_OTP: 'Please enter your OTP',
+  YOU_MUST_ENTER_A_VALID_EMAIL: 'You must enter a valid email',
+  PASSWORD_IS_TOO_SHORT_SHOULD_BE_4_CHARS_MINIMUM:
+    'Password is too short - should be 4 chars minimum',
+  OTP_MUST_BE_6_CHARACTERS: 'OTP must be 6 characters',
+  YOU_MUST_ENTER_A_VALID_PHONE_NUMBER: 'You must enter a valid phone number',
+  OTP: 'OTP',
+  CONFIRM: 'Confirm',
+  INCORRECT_OTP: 'Incorrect OTP',
+  USERNAME: 'Username',
+  REMEMBER: 'Remember',
+  USERNAME_NOT_HAVE_SPECIAL_CHARACTER: 'Username not have special character',
+  PLEASE_CHECK_YOUR_USERNAME_OR_PASSWORD: 'Please check your username or password',
+};
+export default locale;
