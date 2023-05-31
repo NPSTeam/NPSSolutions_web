@@ -310,12 +310,12 @@ function BoardCardForm(props) {
                   value.map((option, index) => {
                     return (
                       <Chip
-                        label={option.username}
+                        label={option?.username}
                         {...getTagProps({ index })}
-                        className={clsx('m-3', option.class)}
+                        className={clsx('m-3', option?.class)}
                         avatar={
-                          <Tooltip title={option.username}>
-                            <Avatar src={option.avatar} />
+                          <Tooltip title={option?.username}>
+                            <Avatar src={option?.avatar} />
                           </Tooltip>
                         }
                       />
