@@ -4,10 +4,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
-import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 import { memo, useState } from 'react';
-import MenuItem from '@mui/material/MenuItem';
 import { useSelector } from 'react-redux';
 import Tabs from '@mui/material/Tabs';
 import Box from '@mui/material/Box';
@@ -131,47 +129,47 @@ function ScheduleWidget(props) {
     </Paper>
   );
 
-  return (
-    <Paper className="w-full rounded-20 shadow">
-      <div className="flex items-center justify-between p-20 h-64 ">
-        <Typography className="text-16 font-medium">{props.widget.title}</Typography>
+  // return (
+  //   <Paper className="w-full rounded-20 shadow">
+  //     <div className="flex items-center justify-between p-20 h-64 ">
+  //       <Typography className="text-16 font-medium">{props.widget.title}</Typography>
 
-        <Select
-          value={currentRange}
-          onChange={handleChangeRange}
-          inputProps={{
-            name: 'currentRange',
-          }}
-          classes={{ select: 'py-8' }}
-          variant="filled"
-        >
-          {Object.entries(props.widget.ranges).map(([key, n]) => {
-            return (
-              <MenuItem key={key} value={key}>
-                {n}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </div>
-      <List className="py-0">
-        {props.widget.schedule[currentRange].map((item) => (
-          <ListItem key={item.id}>
-            <ListItemText
-              classes={{ root: 'px-8', primary: 'font-medium text-16' }}
-              primary={item.title}
-              secondary={item.time}
-            />
-            <ListItemSecondaryAction>
-              <IconButton aria-label="more" size="large">
-                <FuseSvgIcon>heroicons-outline:dots-vertical</FuseSvgIcon>
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
-        ))}
-      </List>
-    </Paper>
-  );
+  //       <Select
+  //         value={currentRange}
+  //         onChange={handleChangeRange}
+  //         inputProps={{
+  //           name: 'currentRange',
+  //         }}
+  //         classes={{ select: 'py-8' }}
+  //         variant="filled"
+  //       >
+  //         {Object.entries(props.widget.ranges).map(([key, n]) => {
+  //           return (
+  //             <MenuItem key={key} value={key}>
+  //               {n}
+  //             </MenuItem>
+  //           );
+  //         })}
+  //       </Select>
+  //     </div>
+  //     <List className="py-0">
+  //       {props.widget.schedule[currentRange].map((item) => (
+  //         <ListItem key={item.id}>
+  //           <ListItemText
+  //             classes={{ root: 'px-8', primary: 'font-medium text-16' }}
+  //             primary={item.title}
+  //             secondary={item.time}
+  //           />
+  //           <ListItemSecondaryAction>
+  //             <IconButton aria-label="more" size="large">
+  //               <FuseSvgIcon>heroicons-outline:dots-vertical</FuseSvgIcon>
+  //             </IconButton>
+  //           </ListItemSecondaryAction>
+  //         </ListItem>
+  //       ))}
+  //     </List>
+  //   </Paper>
+  // );
 }
 
 export default memo(ScheduleWidget);
