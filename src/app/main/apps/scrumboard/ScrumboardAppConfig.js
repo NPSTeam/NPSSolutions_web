@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import i18next from 'i18next';
+import { authRoles } from 'src/app/auth';
 import ScrumboardApp from './ScrumboardApp';
 import en from './i18n/en';
 import vi from './i18n/vi';
@@ -19,6 +20,7 @@ const ScrumboardAppConfig = {
     {
       path: 'apps/scrumboard',
       element: <ScrumboardApp />,
+      auth: authRoles.staffScrumboard,
       children: [
         {
           path: '',

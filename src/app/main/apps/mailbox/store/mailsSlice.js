@@ -7,6 +7,7 @@ import {
 import axios from 'axios';
 import _ from '@lodash';
 import http from 'src/axios/ClassAxios';
+import url from 'src/axios/url';
 import { selectFolders } from './foldersSlice';
 import { selectLabels } from './labelsSlice';
 import { selectFilters } from './filtersSlice';
@@ -69,6 +70,22 @@ export const sendEmail = createAsyncThunk(
   }
 );
 
+export const setUsersByPagination = createAsyncThunk(
+  'users/setUsersByPagination',
+  async (params, { dispatch, getState }) => {
+    try {
+      const response = await http.get(url.listUsers, {
+        params: {},
+      });
+
+      dispatch(setListUsersInSystem(response.data.datas));
+      console.log('response', response.data.datas);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 const mailsAdapter = createEntityAdapter({});
 
 export const { selectAll: selectMails, selectById: selectMailById } = mailsAdapter.getSelectors(
@@ -81,6 +98,7 @@ const mailsSlice = createSlice({
     searchText: '',
     routeParams: {},
     selectedMailIds: [],
+    listUsersInSystem: [],
   }),
   reducers: {
     setMailsSearchText: {
@@ -105,6 +123,9 @@ const mailsSlice = createSlice({
         ? state.selectedMailIds.filter((id) => id !== mailId)
         : [...state.selectedMailIds, mailId];
     },
+    setListUsersInSystem: (state, action) => {
+      state.listUsersInSystem = action.payload;
+    },
   },
   extraReducers: {
     [getMails.fulfilled]: (state, action) => {
@@ -122,6 +143,7 @@ export const {
   deselectAllMails,
   selectMailsByParameter,
   toggleInSelectedMails,
+  setListUsersInSystem,
 } = mailsSlice.actions;
 
 export const selectMailsTitle = (routeParams) =>

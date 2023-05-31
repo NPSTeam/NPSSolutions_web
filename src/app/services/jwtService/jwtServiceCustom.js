@@ -48,13 +48,18 @@ class JwtServiceCustom extends FuseUtils.EventEmitter {
   middlewareSetUser = async (response, type) => {
     return new Promise((resolve, reject) => {
       // this.setSession(response.data.data.access_token, response.data.data.refresh_token);
+      const user = { ...response };
 
       // const user = { ...response.data.data.user };
-      // resolve(user);
 
       // this.setSession(response.data.access_token, response.data.refresh_token);
 
-      const user = { ...response };
+      response.items.forEach((element) => {
+        if (response.items) {
+          user.roles = [...user.roles, element];
+        }
+      });
+
       resolve(user);
     });
   };

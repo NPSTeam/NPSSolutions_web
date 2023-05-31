@@ -76,7 +76,7 @@ function EmailInput(props) {
             {...field}
             fullWidth
             options={listEmails}
-            getOptionLabel={(option) => option.email || ''}
+            getOptionLabel={(option) => option.email}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -85,8 +85,8 @@ function EmailInput(props) {
                 placeholder="Email"
                 variant="outlined"
                 fullWidth
-                error={!!errors.email}
-                helperText={errors?.email?.message}
+                // error={!!errors.email}
+                // helperText={errors?.email?.message}
                 InputProps={{
                   ...params.InputProps,
                   startAdornment: (
@@ -100,7 +100,7 @@ function EmailInput(props) {
             onChange={(event, valueOption) => {
               console.log(event.target.innerText);
               setValue('email', valueOption);
-              dispatch(setEmailSeleted(valueOption.email));
+              dispatch(setEmailSeleted(valueOption?.email));
             }}
           />
         )}

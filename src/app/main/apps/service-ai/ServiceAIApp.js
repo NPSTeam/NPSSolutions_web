@@ -6,7 +6,7 @@ function ServiceAIApp() {
   return (
     <Box sx={{ width: '100%', backgroundColor: '#FFF', overflow: 'hidden' }}>
       <iframe
-        src="http://167.172.78.210:7860/"
+        src="https://d31e6b24a00ea19456.gradio.live"
         title="Full Screen ServiceAi"
         style={{ width: '100%', height: '100vh', border: 'none' }}
       />

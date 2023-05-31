@@ -25,5 +25,6 @@ const locale = {
   YES: 'Yes',
   DELETE_ROLE_APP: 'Delete role app',
   EDIT: 'Edit',
+  YOU_MUST_ENTER_A_CODE: 'You must enter a code',
 };
 export default locale;

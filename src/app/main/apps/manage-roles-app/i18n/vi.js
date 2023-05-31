@@ -25,5 +25,6 @@ const locale = {
   YES: 'Có',
   DELETE_ROLE_APP: 'Xóa quyền ứng dụng',
   EDIT: 'Sửa',
+  YOU_MUST_ENTER_A_CODE: 'Bạn phải nhập mã',
 };
 export default locale;

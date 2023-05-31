@@ -53,6 +53,7 @@ const navigationConfig = [
         icon: 'heroicons-outline:pencil-alt',
         url: '/apps/notes',
         translate: 'NOTES',
+        auth: authRoles.staffNotes,
       },
       {
         id: 'apps.tasks',
@@ -61,6 +62,7 @@ const navigationConfig = [
         icon: 'heroicons-outline:check-circle',
         url: '/apps/tasks',
         translate: 'TASKS',
+        auth: authRoles.staffTasks,
       },
       {
         id: 'apps.scrumboard',
@@ -69,6 +71,7 @@ const navigationConfig = [
         icon: 'heroicons-outline:view-boards',
         url: '/apps/scrumboard',
         translate: 'SCRUMBOARD',
+        auth: authRoles.staffScrumboard,
       },
       // {
       //   id: 'apps.indoor',
@@ -85,6 +88,7 @@ const navigationConfig = [
         icon: 'heroicons-outline:calendar',
         url: '/apps/calendar',
         translate: 'CALENDAR',
+        auth: authRoles.staffCalendar,
       },
       {
         id: 'apps.mailbox',
@@ -93,10 +97,11 @@ const navigationConfig = [
         icon: 'heroicons-outline:mail',
         url: '/apps/mailbox',
         translate: 'MAIL',
-        badge: {
-          title: '27',
-          classes: 'px-8 bg-pink-600 text-white rounded-full',
-        },
+        // badge: {
+        //   title: '27',
+        //   classes: 'px-8 bg-pink-600 text-white rounded-full',
+        // },
+        auth: authRoles.staffMail,
       },
       {
         id: 'apps.chat',
@@ -105,6 +110,7 @@ const navigationConfig = [
         icon: 'heroicons-outline:chat-alt',
         url: '/apps/chat',
         translate: 'CHAT',
+        auth: authRoles.staffChat,
       },
       {
         id: 'apps.chatAI',
@@ -113,6 +119,7 @@ const navigationConfig = [
         icon: 'heroicons-outline:globe-alt',
         url: '/apps/service-ai',
         translate: 'SERVICEAI',
+        auth: authRoles.staffServiceAI,
       },
       {
         id: 'apps.contacts',
@@ -121,6 +128,7 @@ const navigationConfig = [
         icon: 'heroicons-outline:user-group',
         url: '/apps/contacts',
         translate: 'CONTACTS',
+        auth: authRoles.staffContact,
       },
     ],
   },

@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -17,8 +17,9 @@ import WYSIWYGEditor from 'app/shared-components/WYSIWYGEditor';
 import clsx from 'clsx';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { useDispatch, useSelector } from 'react-redux';
+import { Autocomplete, InputAdornment } from '@mui/material';
 import MailAttachment from './MailAttachment';
-import { sendEmail } from './store/mailsSlice';
+import { sendEmail, setUsersByPagination } from './store/mailsSlice';
 
 /**
  * Form Validation Schema
@@ -29,12 +30,19 @@ const schema = yup.object().shape({
 
 function MailCompose(props) {
   const { className } = props;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setUsersByPagination());
+  }, [dispatch]);
+
   const [openDialog, setOpenDialog] = useState(false);
 
   const user = useSelector(({ auth }) => auth.user);
-  console.log('user', user);
+  const listUsersInSystem = useSelector(({ mailboxApp }) => mailboxApp.mails.listUsersInSystem);
+  console.log('listUsersInSystem', listUsersInSystem);
 
-  const { handleSubmit, formState, control } = useForm({
+  const { handleSubmit, formState, control, setValue } = useForm({
     mode: 'onChange',
     defaultValues: {
       from: user.email,
@@ -46,8 +54,6 @@ function MailCompose(props) {
     },
     resolver: yupResolver(schema),
   });
-
-  const dispatch = useDispatch();
 
   const { isValid, dirtyFields, errors } = formState;
 
@@ -140,6 +146,40 @@ function MailCompose(props) {
                   variant="outlined"
                   fullWidth
                   required
+                />
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="email"
+              render={({ field }) => (
+                <Autocomplete
+                  {...field}
+                  fullWidth
+                  options={listUsersInSystem}
+                  getOptionLabel={(option) => option.email}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Email"
+                      placeholder="Email"
+                      variant="outlined"
+                      fullWidth
+                      InputProps={{
+                        ...params.InputProps,
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <FuseSvgIcon size={20}>heroicons-solid:mail</FuseSvgIcon>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  )}
+                  onChange={(event, valueOption) => {
+                    console.log(event.target.innerText);
+                    setValue('email', valueOption);
+                  }}
                 />
               )}
             />
