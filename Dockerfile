@@ -1,13 +1,10 @@
 # Stage 1, based on Node.js, to build and compile the react app
-FROM node:14 as build
+FROM node:16 as build
 RUN mkdir -p /app
 WORKDIR /app
 
 COPY package*.json /app/
 COPY ./ /app/
-COPY /target/fullchain.pem /app/ssl/fullchain.pem
-COPY /target/privkey.pem /app/ssl/privkey.pem
-
 RUN yarn install \
     && yarn prebuild \
     && yarn generate-build-meta \
@@ -22,9 +19,10 @@ WORKDIR /app
 RUN apk add --update bash jq curl dos2unix \
     && rm -rf /var/cache/apk/*
 
-
-
 COPY --from=build /app/build/ /app/build
+
+COPY src/app/ssl/fullchain.pem /app/ssl/fullchain.pem
+COPY src/app/ssl/privkey.pem /app/ssl/privkey.pem
 
 COPY internals/scripts /app/scripts
 COPY public/  /app/public
