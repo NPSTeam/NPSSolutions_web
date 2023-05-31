@@ -1,5 +1,5 @@
 # Stage 1, based on Node.js, to build and compile the react app
-FROM node:16 as build
+FROM node:14 as build
 RUN mkdir -p /app
 WORKDIR /app
 
