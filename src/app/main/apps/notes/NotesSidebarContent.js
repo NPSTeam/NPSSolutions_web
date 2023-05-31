@@ -39,7 +39,7 @@ function NotesSidebarContent(props) {
 
   return (
     <div className="px-16 py-24">
-      <div
+      <motion.div
         component={motion.div}
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}
@@ -104,7 +104,7 @@ function NotesSidebarContent(props) {
             <ListItemText className="truncate" primary="Edit Labels" disableTypography />
           </StyledListItem>
         </List>
-      </div>
+      </motion.div>
     </div>
   );
 }
