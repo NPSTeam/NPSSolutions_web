@@ -139,9 +139,11 @@ const FuseScrollbars = forwardRef((props, ref) => {
         props.customScrollbars && (props.enable || true) && !isMobile
           ? {
               position: 'relative',
-              overflow: 'hidden!important',
+              overflow: 'hidden !important',
             }
-          : {}
+          : {
+              overflow: 'hidden !important',
+            }
       }
       ref={ref}
     >

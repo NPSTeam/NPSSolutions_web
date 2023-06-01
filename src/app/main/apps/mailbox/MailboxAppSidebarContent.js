@@ -5,10 +5,10 @@ import Typography from '@mui/material/Typography';
 import FuseNavigation from '@fuse/core/FuseNavigation';
 import { IconButton } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
-import MailCompose from './MailCompose';
 import { selectFilters } from './store/filtersSlice';
 import { selectFolders } from './store/foldersSlice';
 import { openLabelsDialog, selectLabels } from './store/labelsSlice';
+import MailCompose from './MailCompose';
 
 function MailboxAppSidebarContent(props) {
   const folders = useSelector(selectFolders);
@@ -36,6 +36,7 @@ function MailboxAppSidebarContent(props) {
         </Typography>
 
         <MailCompose className="mt-32" />
+        {/* <SelectUserInSystem /> */}
       </div>
 
       <div className="mb-24">

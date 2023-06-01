@@ -4,7 +4,6 @@ import {
   createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
-import axios from 'axios';
 import _ from '@lodash';
 import http from 'src/axios/ClassAxios';
 import url from 'src/axios/url';
@@ -17,7 +16,7 @@ export const getMails = createAsyncThunk(
   async (routeParams, { getState }) => {
     routeParams = routeParams || getState().mailboxApp.mails.routeParams;
 
-    let url = '/api/mailbox/mails/';
+    let url = '/api/v1/mailbox/mails/';
     if (routeParams.folderHandle) {
       url += routeParams.folderHandle;
     }
@@ -29,7 +28,7 @@ export const getMails = createAsyncThunk(
     if (routeParams.filterHandle) {
       url += `filters/${routeParams.filterHandle}`;
     }
-    const response = await axios.get(url);
+    const response = await http.get(url);
     const data = await response.data;
 
     return { data, routeParams };
@@ -42,7 +41,7 @@ export const setActionToMails = createAsyncThunk(
     const { mails } = getState().mailboxApp;
     const { selectedMailIds } = mails;
 
-    const response = await axios.post('/api/mailbox/actions', {
+    const response = await http.post('/api/v1/mailbox/actions', {
       type,
       value,
       ids,

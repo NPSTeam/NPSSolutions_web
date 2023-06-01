@@ -12,12 +12,11 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import _ from '@lodash';
 import WYSIWYGEditor from 'app/shared-components/WYSIWYGEditor';
 import clsx from 'clsx';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { Autocomplete, InputAdornment } from '@mui/material';
+import { Autocomplete } from '@mui/material';
 import MailAttachment from './MailAttachment';
 import { sendEmail, setUsersByPagination } from './store/mailsSlice';
 
@@ -40,9 +39,8 @@ function MailCompose(props) {
 
   const user = useSelector(({ auth }) => auth.user);
   const listUsersInSystem = useSelector(({ mailboxApp }) => mailboxApp.mails.listUsersInSystem);
-  console.log('listUsersInSystem', listUsersInSystem);
 
-  const { handleSubmit, formState, control, setValue } = useForm({
+  const { handleSubmit, formState, control, setValue, watch } = useForm({
     mode: 'onChange',
     defaultValues: {
       from: user.email,
@@ -55,7 +53,10 @@ function MailCompose(props) {
     resolver: yupResolver(schema),
   });
 
+  const formValue = watch();
+
   const { isValid, dirtyFields, errors } = formState;
+  console.log('form', formValue, isValid, dirtyFields);
 
   const { t } = useTranslation('mailboxApp');
 
@@ -71,14 +72,21 @@ function MailCompose(props) {
     setOpenDialog(false);
   }
 
-  function onSubmit(data) {
+  function onSubmit() {
     const newData = {
-      ...data,
+      ...formValue,
       type: 'mail',
       from: {
         avatar: user.photoURL,
         contact: `${user.displayName} <${user.email}>`,
       },
+      to: formValue.to.email,
+      cc: formValue.cc.map((item) => item.email),
+      bcc: formValue.bcc.map((item) => item.email),
+      date: new Date(),
+      subject: formValue.subject,
+      content: formValue.message,
+      folder: 1,
     };
 
     console.log('newData', newData);
@@ -132,85 +140,60 @@ function MailCompose(props) {
             />
 
             <Controller
+              control={control}
               name="to"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  className="mt-8 mb-16"
-                  label="To"
-                  autoFocus
-                  id="to"
-                  error={!!errors.to}
-                  helperText={errors?.to?.message}
-                  variant="outlined"
-                  fullWidth
-                  required
-                />
-              )}
-            />
-
-            <Controller
-              control={control}
-              name="email"
               render={({ field }) => (
                 <Autocomplete
                   {...field}
                   fullWidth
+                  className="mt-8 mb-16"
                   options={listUsersInSystem}
                   getOptionLabel={(option) => option.email}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Email"
-                      placeholder="Email"
-                      variant="outlined"
-                      fullWidth
-                      InputProps={{
-                        ...params.InputProps,
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <FuseSvgIcon size={20}>heroicons-solid:mail</FuseSvgIcon>
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  )}
+                  disablePortal
+                  renderInput={(params) => <TextField {...params} label="to" />}
                   onChange={(event, valueOption) => {
-                    console.log(event.target.innerText);
-                    setValue('email', valueOption);
+                    setValue('to', valueOption);
                   }}
                 />
               )}
             />
 
             <Controller
-              name="cc"
               control={control}
+              name="cc"
               render={({ field }) => (
-                <TextField
+                <Autocomplete
                   {...field}
-                  className="mt-8 mb-16"
-                  label="Cc"
-                  id="cc"
-                  variant="outlined"
                   fullWidth
+                  options={listUsersInSystem}
+                  getOptionLabel={(option) => option.email}
+                  disablePortal
+                  multiple
+                  className="mt-8 mb-16"
+                  renderInput={(params) => <TextField {...params} label="CC" placeholder="CC" />}
+                  onChange={(event, valueOption) => {
+                    setValue('cc', valueOption);
+                  }}
                 />
               )}
             />
 
             <Controller
-              name="bcc"
               control={control}
+              name="bcc"
               render={({ field }) => (
-                <TextField
+                <Autocomplete
                   {...field}
-                  className="mt-8 mb-16"
-                  label="Bcc"
-                  id="bcc"
-                  name="bcc"
-                  variant="outlined"
                   fullWidth
+                  options={listUsersInSystem}
+                  getOptionLabel={(option) => option.email}
+                  disablePortal
+                  multiple
+                  className="mt-8 mb-16"
+                  renderInput={(params) => <TextField {...params} label="BCC" placeholder="BCC" />}
+                  onChange={(event, valueOption) => {
+                    setValue('bcc', valueOption);
+                  }}
                 />
               )}
             />
@@ -276,7 +259,8 @@ function MailCompose(props) {
                 variant="contained"
                 color="secondary"
                 type="submit"
-                disabled={_.isEmpty(dirtyFields) || !isValid}
+                // disabled={_.isEmpty(dirtyFields) || !isValid}
+                onClick={onSubmit}
               >
                 Send
               </Button>

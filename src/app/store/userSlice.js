@@ -80,7 +80,7 @@ const createRedirectUrlWithRole = (user) => {
     return '/apps/workspaces';
   }
   if (_.some(roles, (item) => authRoles.user.includes(item))) {
-    return '/example';
+    return '/apps/my-profile';
   }
   return '/login';
 };

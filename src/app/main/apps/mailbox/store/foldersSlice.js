@@ -4,11 +4,11 @@ import {
   createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
-import axios from 'axios';
 import _ from '@lodash';
+import http from 'src/axios/ClassAxios';
 
 export const getFolders = createAsyncThunk('mailboxApp/folders/getFolders', async () => {
-  const response = await axios.get('/api/mailbox/folders');
+  const response = await http.get('/api/v1/mailbox/folders');
   const data = await response.data;
 
   return data;

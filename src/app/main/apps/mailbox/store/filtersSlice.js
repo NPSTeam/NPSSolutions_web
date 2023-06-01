@@ -1,8 +1,8 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import http from 'src/axios/ClassAxios';
 
 export const getFilters = createAsyncThunk('mailboxApp/filters/getFilters', async () => {
-  const response = await axios.get('/api/mailbox/filters');
+  const response = await http.get('/api/v1/mailbox/filters');
   const data = await response.data;
 
   return data;

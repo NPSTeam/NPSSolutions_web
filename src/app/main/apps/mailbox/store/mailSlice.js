@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import _ from '@lodash';
 import history from '@history';
+import http from 'src/axios/ClassAxios';
 import { getMails } from './mailsSlice';
 
 export const getMail = createAsyncThunk('mailboxApp/mail/getMail', async (routeParams) => {
-  let url = '/api/mailbox/mails/';
+  let url = '/api/v1/mailbox/mails/';
   if (routeParams.folderHandle) {
     url += `${routeParams.folderHandle}/${routeParams.mailId}`;
   }
@@ -19,7 +19,7 @@ export const getMail = createAsyncThunk('mailboxApp/mail/getMail', async (routeP
   }
 
   try {
-    const response = await axios.get(url);
+    const response = await http.get(url);
 
     const data = await response.data;
 
