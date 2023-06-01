@@ -1,22 +1,22 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import http from 'src/axios/ClassAxios';
 
 export const getNotifications = createAsyncThunk('notificationPanel/getData', async () => {
-  const response = await axios.get('/api/notifications');
+  const response = await http.get('/api/v1/notifications');
   const data = await response.data;
 
   return data;
 });
 
 export const dismissAll = createAsyncThunk('notificationPanel/dismissAll', async () => {
-  const response = await axios.delete('/api/notifications');
+  const response = await http.delete('/api/v1/notifications');
   await response.data;
 
   return true;
 });
 
 export const dismissItem = createAsyncThunk('notificationPanel/dismissItem', async (id) => {
-  const response = await axios.delete(`/api/notifications/${id}`);
+  const response = await http.delete(`/api/v1/notifications/${id}`);
   await response.data;
 
   return id;
@@ -25,7 +25,7 @@ export const dismissItem = createAsyncThunk('notificationPanel/dismissItem', asy
 export const addNotification = createAsyncThunk(
   'notificationPanel/addNotification',
   async (item) => {
-    const response = await axios.post(`/api/notifications`, { ...item });
+    const response = await http.post(`/api/notifications`, { ...item });
     const data = await response.data;
 
     return data;
