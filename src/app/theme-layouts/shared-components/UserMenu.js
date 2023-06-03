@@ -126,7 +126,6 @@ function UserMenu(props) {
                 userMenuClose();
 
                 http.post(url.logout, { withCredentials: true });
-                localStorage.removeItem('access_token');
                 localStorage.removeItem('refresh_token');
                 localStorage.removeItem('language');
                 setTimeout(() => {

@@ -83,7 +83,7 @@ function MailboxAppSidebarContent(props) {
           navigation={labels.map((item) => ({
             ...item,
             type: 'item',
-            url: `/apps/mailbox/label/${item.slug}`,
+            url: `/apps/mailbox/label/${item.id}`,
             icon: 'heroicons-outline:tag',
             sx: {
               '& > .fuse-list-item-icon': {
