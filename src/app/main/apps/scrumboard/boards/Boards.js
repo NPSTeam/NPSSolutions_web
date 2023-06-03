@@ -1,8 +1,9 @@
-import { Chip } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import {
   getBoards,
   getUserRoleWorkspace,
@@ -18,7 +19,7 @@ function Boards(props) {
   const getState = useSelector((state) => state);
   const boards = useSelector(selectBoards);
   const listWorkspace = useSelector(({ scrumboardApp }) => scrumboardApp.boards.listWorkspace);
-
+  const { t } = useTranslation('scrumboardApp');
   const targetWorkspace = useSelector(({ scrumboardApp }) => scrumboardApp.boards.targetWorkspace);
 
   console.log(listWorkspace);
@@ -57,16 +58,54 @@ function Boards(props) {
     <>
       <div className="flex grow shrink-0 flex-col items-center container p-24 sm:p-40">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.1 } }}>
-          {listWorkspace.map((workspace) => (
-            <Chip
-              key={workspace.workspaceId}
-              label={workspace.name}
-              className="mr-8 mb-8"
-              color="primary"
-              onClick={() => handleChipClick(workspace)}
-              variant={targetWorkspace === workspace.workspaceId ? 'default' : 'outlined'}
-            />
-          ))}
+          {/* {listWorkspace.map((workspace) => (
+          
+            // <Chip
+            //   key={workspace.workspaceId}
+            //   label={workspace.name}
+            //   className="mr-8 mb-8"
+            //   color="primary"
+            //   onClick={() => handleChipClick(workspace)}
+            //   variant={targetWorkspace === workspace.workspaceId ? 'default' : 'outlined'}
+            // />
+          ))} */}
+          <FormControl sx={{ width: '300px' }}>
+            <InputLabel
+              sx={{ backgroundColor: '#ececec', paddingX: '2px' }}
+              shrink
+              id="project-name-select-label"
+            >
+              {t('CHOOSE_YOUR_PROJECT')}
+            </InputLabel>
+            <Select
+              labelId="project-name-select-label"
+              id="project-name-select"
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    height: '128px',
+                    '& .MuiMenuItem-root': {
+                      padding: 1,
+                    },
+                  },
+                },
+              }}
+              displayEmpty
+            >
+              {/* <MenuItem label="All" value="">
+                All
+              </MenuItem> */}
+              {listWorkspace.map((ws) => (
+                <MenuItem
+                  key={ws.workspaceId}
+                  value={ws.workspaceId}
+                  onClick={() => handleChipClick(ws)}
+                >
+                  {ws.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.1 } }}>

@@ -13,7 +13,7 @@ const userSlice = createSlice({
 });
 const createRedirectUrlWithRole = (roles) => {
   if (_.some(roles, (item) => authRoles.admin.includes(item))) {
-    return '/apps/workspaces';
+    return '/admin/system-settings';
   }
   if (_.some(roles, (item) => authRoles.user.includes(item))) {
     return '/apps/my-profile';

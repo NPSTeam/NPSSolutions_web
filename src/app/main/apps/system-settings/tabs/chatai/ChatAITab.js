@@ -1,54 +1,74 @@
-import { useState } from 'react';
-import { Configuration, OpenAIApi } from 'openai';
+import { IconButton, Typography, Box, Divider, TextField } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import InputContent from './Input';
+import { deleteChatContent, setTargetId, updateChatContent } from '../../store/systemSettingsSlice';
 
+const defaultValues = {
+  chatContent: '',
+  // contentUser: '',
+};
 export default function ChatAITab() {
-  const configuration = new Configuration({
-    apiKey: process.env.REACT_APP_OPEN_API_KEY,
-  });
-  const openai = new OpenAIApi(configuration);
+  const dispatch = useDispatch();
 
-  const [prompt, setPrompt] = useState('');
-  const [result, setResult] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const handleClick = async () => {
-    setLoading(true);
-    try {
-      const response = await openai.createCompletion({
-        model: 'text-davinci-003',
-        prompt,
-        temperature: 0.5,
-        max_tokens: 100,
-      });
-      setResult(response.data.choices[0].text);
-    } catch (err) {
-      console.log(err);
-    }
-    setLoading(false);
-  };
+  const chatContent = useSelector(
+    ({ systemSettingsApp }) => systemSettingsApp.systemSettings.content
+  );
 
   return (
     <main className="main">
-      <div className="w-2/4 mx-auto">
-        <textarea
-          type="text"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Enter your prompt here"
-          className="textarea"
-        />
-
-        <button
-          type="button"
-          onClick={handleClick}
-          disabled={loading || !prompt}
-          className="button"
+      <InputContent />
+      {chatContent.map((content, index) => (
+        <form
+          name="chatAIForm"
+          noValidate
+          key={index}
+          // className="flex flex-col justify-center w-full mt-32"
         >
-          {loading ? 'Loading...' : 'Submit'}
-        </button>
-
-        <pre className="pre">{result}</pre>
-      </div>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography width={100} textTransform="uppercase">
+              {content.role}
+            </Typography>
+            {content.role === 'user' && (
+              <TextField
+                //  minRows={6}
+                multiline
+                autoFocus
+                type="text"
+                //  error={!!errors.contentUser}
+                //  helperText={errors?.contentUser?.message}
+                variant="outlined"
+                required
+                fullWidth
+                defaultValue={content?.content}
+                onChange={() => {
+                  dispatch(updateChatContent({ data: content }));
+                }}
+              />
+            )}
+            {content.role === 'assistant' && (
+              <TextField
+                multiline
+                autoFocus
+                type="text"
+                variant="outlined"
+                required
+                fullWidth
+                defaultValue={content?.content}
+              />
+            )}
+            <IconButton
+              onClick={() => {
+                dispatch(setTargetId(content.id));
+                dispatch(deleteChatContent());
+              }}
+            >
+              <RemoveCircleOutlineIcon />
+            </IconButton>
+          </Box>
+          <Divider sx={{ margin: '12px 0' }} />
+        </form>
+      ))}
     </main>
   );
 }

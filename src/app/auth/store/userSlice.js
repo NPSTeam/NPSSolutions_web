@@ -79,7 +79,7 @@ export const createUserSettingsFirebase = (authUser) => async (dispatch, getStat
 const createRedirectUrlWithRole = (user) => {
   const { roles } = user;
   if (_.some(roles, (item) => authRoles.admin.includes(item))) {
-    return '/apps/workspaces';
+    return '/admin/system-settings';
   }
   if (_.some(roles, (item) => authRoles.user.includes(item))) {
     return '/apps/my-profile';

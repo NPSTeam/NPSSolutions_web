@@ -74,7 +74,7 @@ const MailListItem = (props) => {
           <div className="flex flex-col w-full min-w-0">
             <div className="flex items-center w-full">
               <Typography className="mr-8 font-semibold truncate">
-                {mail.from.contact.split('<')[0].trim()}
+                {mail?.from?.contact?.split('<')[0].trim()}
               </Typography>
 
               {mail.important && (

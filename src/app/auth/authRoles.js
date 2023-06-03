@@ -14,6 +14,7 @@ const authRoles = {
   staffContact: ['MENU_CONTACT'],
   staffChat: ['MENU_CHAT'],
   staffServiceAI: ['MENU_SERVICE_AI'],
+  staffWorkspaces: ['MENU_WORKSPACES'],
 };
 
 export default authRoles;

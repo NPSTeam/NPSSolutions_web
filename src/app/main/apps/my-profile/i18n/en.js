@@ -36,6 +36,23 @@ const locale = {
   MINUTE: 'minute',
   SUCCESSFUL_CHANGE_UNIT: 'Successful: Change unit!',
   FAILED_CHANGE_UNIT: 'Failed: Change unit!',
+  USER_PROFILE_DETAIL: 'User Profile Detail',
+  PARTNER: 'Partner',
+  FULL_NAME: 'Full name',
+  PHONE_NUMBER: 'Phone number',
+  DATE_OF_BIRTH: 'Date of Birth',
+  BANK_ACCOUNT: 'Bank account',
+  BANK_NAME: 'Bank name',
+  JOIN_DATE: 'Join date',
+  TITLE: 'Title',
+  LEVEL: 'Level',
+  PAYMENT_CATEGORY: 'Payment category',
+  DEFAULT_RATE: 'Default rate',
+  CURRENT_SALARY: 'Current salary',
+  PROJECTS: 'Projects',
+  IS_SUPER: 'Is supervisor',
+  USER_PROFILE_PICTURE: 'User Profile Picture',
+  CURRICULUM_VITAE: 'Curriculum Vitae',
 };
 
 export default locale;

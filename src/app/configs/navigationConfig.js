@@ -149,6 +149,15 @@ const navigationConfig = [
   //   ],
   // },
   {
+    id: 'workspacesManagement',
+    title: 'Workspaces Management',
+    type: 'item',
+    icon: 'business',
+    translate: 'WORKSPACES_MANAGEMENT',
+    url: '/apps/workspaces',
+    auth: authRoles.staffWorkspaces,
+  },
+  {
     id: 'administrator',
     title: 'Administrator',
     translate: 'ADMINISTRATOR',
@@ -173,15 +182,7 @@ const navigationConfig = [
             url: '/apps/users',
             auth: authRoles.admin,
           },
-          {
-            id: 'workspacesManagement',
-            title: 'Workspaces Management',
-            type: 'item',
-            icon: 'business',
-            translate: 'WORKSPACES_MANAGEMENT',
-            url: '/apps/workspaces',
-            auth: authRoles.admin,
-          },
+
           {
             id: 'teamsManagement',
             title: 'Teams Management',

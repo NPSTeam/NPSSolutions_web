@@ -27,6 +27,7 @@ import add from 'src/assets/icon/add.svg';
 import manageUser from 'src/assets/icon/manageUser.svg';
 import update from 'src/assets/icon/update.svg';
 import deleteIcon from 'src/assets/icon/deleteIcon.svg';
+import history from '@history';
 
 import {
   setWorkspacesByPagination,
@@ -34,7 +35,6 @@ import {
   setIsEditWorkspace,
   exportWorkspace,
 } from '../store/workspacesSlice';
-import AddUpdateWorkspace from './dialog/AddUpdateWorkspace';
 import DeleteWorkspace from './dialog/DeleteWorkspace';
 
 const StyledTableBody = styled(TableBody)(({ theme }) => ({
@@ -240,11 +240,13 @@ function WorkspaceList() {
                     variant="contained"
                     onClick={() => {
                       dispatch(setTargetWorkspace({}));
-                      dispatch(
-                        openDialog({
-                          children: <AddUpdateWorkspace />,
-                        })
-                      );
+                      history.push('/apps/add-workspaces');
+
+                      // dispatch(
+                      //   openDialog({
+                      //     children: <AddUpdateWorkspace />,
+                      //   })
+                      // );
                     }}
                   >
                     <img src={add} alt="add" />
@@ -325,11 +327,12 @@ function WorkspaceList() {
                                 onClick={() => {
                                   dispatch(setTargetWorkspace(row));
                                   dispatch(setIsEditWorkspace(true));
-                                  dispatch(
-                                    openDialog({
-                                      children: <AddUpdateWorkspace />,
-                                    })
-                                  );
+                                  history.push('/apps/add-workspaces');
+                                  // dispatch(
+                                  //   openDialog({
+                                  //     children: <AddUpdateWorkspace />,
+                                  //   })
+                                  // );
                                 }}
                               >
                                 <img src={update} alt="update" />

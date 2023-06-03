@@ -7,7 +7,8 @@ import { useDispatch } from 'react-redux';
 import reducer from './store';
 import AwsTab from './tabs/aws/AwsTab';
 import EmailTab from './tabs/email/EmailTab';
-import { getSystemSettings } from './store/systemSettingsSlice';
+import ChatAITab from './tabs/chatai/ChatAITab';
+import { getChatContent, getSystemSettings } from './store/systemSettingsSlice';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,6 +46,7 @@ function SystemSettingsApp() {
 
   useEffect(() => {
     dispatch(getSystemSettings());
+    dispatch(getChatContent());
   }, [dispatch]);
 
   return (
@@ -64,6 +66,8 @@ function SystemSettingsApp() {
           <Tab label="AWS" {...a11yProps(0)} />
           <Divider orientation="vertical" flexItem />
           <Tab label="Email" {...a11yProps(2)} />
+          <Divider orientation="vertical" flexItem />
+          <Tab label="Chat AI" {...a11yProps(4)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -71,6 +75,9 @@ function SystemSettingsApp() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <EmailTab />
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <ChatAITab />
       </TabPanel>
     </Box>
   );
