@@ -19,35 +19,45 @@ export default function ProductSkyeye() {
   const dataSlide = [
     {
       id: 0,
-      title: 'Automatic flight planning',
+      title: 'Note',
       description:
-        'Enables automated flight planning and execution by your drone, saving time and ensuring safe and compliant flights',
-      image: 'AutomaticFlightPlanning',
+        'From fleeting thoughts to everlasting wisdom, the note feature captures the essence of our minds, preserving knowledge and inspiring greatness',
+      image: 'NoteApp',
     },
     {
       id: 1,
-      title: 'Image Processing',
-      description: 'Create accurate maps and models from your drone footage',
-      image: 'ImageProcessing',
+      title: 'Task',
+      description:
+        'Tasks transform dreams into accomplishments, and the task feature is the compass that guides us on the path to success',
+      image: 'TaskApp',
     },
     {
       id: 2,
-      title: 'Data Analysis',
-      description: 'Enable users to analyze and extract insights from drone data.',
-      image: 'DataAnalysis',
+      title: 'Scrumboard',
+      description:
+        'Visualize progress, empower collaboration, and conquer projects with the scrumboard feature—the canvas for agile success',
+      image: 'ScrumboardApp',
     },
     {
       id: 3,
-      title: 'Collaboration And Sharing',
+      title: 'Mail',
       description:
-        'Enable users to collaborate and share drone data with team members and stakeholders using annotation, measurement, and markup tools',
-      image: 'CollaborationAndSharing',
+        'Emails are the digital threads that weave our connections, bridging distances and fostering communication in the realm of bits and pixels',
+      image: 'MailApp',
     },
     {
       id: 4,
-      title: 'Reporting',
-      description: 'Generating reports which can be customized to share with stakeholders.',
-      image: 'Reporting',
+      title: 'Chat',
+      description:
+        'Converse and collaborate effortlessly, as the chat feature becomes the gateway to seamless communication, bridging minds and nurturing connections',
+      image: 'ChatApp',
+    },
+    {
+      id: 5,
+      title: 'AIService',
+      description:
+        'Unleash the power of artificial intelligence, where innovation and intelligence converge, paving the way for boundless possibilities and transformative experiences',
+      image: 'AIServiceApp',
     },
   ];
 
@@ -74,7 +84,7 @@ export default function ProductSkyeye() {
             color: '#090914',
           }}
         >
-          SKYEYE
+          MAIN FEATURES
         </Typography>
       </Box>
 

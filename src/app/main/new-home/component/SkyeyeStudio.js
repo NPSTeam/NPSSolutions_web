@@ -9,7 +9,6 @@ import './styles-slider-product-skyeye.css';
 
 // import required modules
 import './fonts.css';
-import TabDataLabeling from './TabDataLabeling';
 import LifeCycle from './LifeCycle';
 
 export default function SkyeyeStudio() {
@@ -35,7 +34,7 @@ export default function SkyeyeStudio() {
             color: '#090914',
           }}
         >
-          SKYEYE STUDIO
+          AI CHATBOT
         </Typography>
       </Box>
 
@@ -66,32 +65,6 @@ export default function SkyeyeStudio() {
         </Typography>
 
         <LifeCycle />
-
-        <Typography
-          sx={{
-            fontFamily: 'Poppins, "Helvetica", "Arial", sans-serif',
-            fontSize: '2.4rem',
-            fontWeight: '600',
-            paddingLeft: '5rem',
-            color: '#2563EB',
-          }}
-        >
-          Data Labeling
-        </Typography>
-
-        <Typography
-          sx={{
-            fontFamily: 'Poppins, sans-serif',
-            fontSize: '1.8rem',
-            fontWeight: '400',
-            color: '#667085',
-          }}
-        >
-          The best quality data to fuel the best performing models.
-        </Typography>
-        <Box sx={{ width: '100%', display: 'flex' }}>
-          <TabDataLabeling />
-        </Box>
       </Box>
     </div>
   );

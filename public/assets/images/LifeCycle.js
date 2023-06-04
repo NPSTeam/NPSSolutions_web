@@ -5,7 +5,9 @@ import './lifeCycle.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
+import 'swiper/modules/pagination/pagination.min.css';
+import 'swiper/modules/navigation/navigation.min.css';
 
 import './styles-slider-product-skyeye.css';
 
@@ -25,7 +27,7 @@ const LifeCycle = () => {
       id: 1,
       title: 'Data Import',
       description:
-        'Importing data to NPSSolutions by uploading data files, or importing data from database, or data synchronization',
+        'Importing data to Skyeye Studio by uploading data files, or importing data from database, or data synchronization',
       image: 'DataImport',
     },
     {
@@ -111,7 +113,7 @@ const LifeCycle = () => {
   }, [currentTabData.id]);
 
   return (
-    <div className="container-life-cycle">
+    <div className="container">
       {currentTabData.id === 0 ? (
         <>
           <div

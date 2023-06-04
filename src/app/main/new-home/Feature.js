@@ -2,12 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useMediaQuery } from '@mui/material';
 import ButtonIndustry from './component/ButtonIndustry';
-import AgricultureIcon from './component/icon/AgricultureIcon';
-import TelecommunicationIcon from './component/icon/TelecommunicationIcon';
 import { setTargetIndustryCategory } from './store/homeSlice';
 import DetailContentIndustry from './component/DetailContentIndustry';
-import ConstructionIcon from './component/icon/ConstructionIcon';
-import ForestryIcon from './component/icon/ForestryIcon';
+import NoteIcon from './component/icon/NoteIcon';
+import TaskIcon from './component/icon/TaskIcon';
+import ScrumboardIcon from './component/icon/ScrumboardIcon';
+import EmailIcon from './component/icon/EmailIcon';
+import ChatIcon from './component/icon/ChatIcon';
+import AIServiceIcon from './component/icon/AIServiceIcon';
 
 const Feature = () => {
   const targetIndustryCategory = useSelector(
@@ -16,206 +18,289 @@ const Feature = () => {
 
   const dataIndustry = [
     {
-      icon: <AgricultureIcon isActive={targetIndustryCategory.category === 'AGRICULTURE'} />,
-      category: 'AGRICULTURE',
-      description: 'Optimize agriculture through efficient data analysis.',
+      icon: <NoteIcon />,
+      category: 'NOTE',
+      description: 'Capture, organize, remember.',
       mainColor: '#0A4A03',
       background: 'bg-agriculture-content',
       imgBgColor: '#D3FCCF',
       content: {
         description:
-          'Drones and AI revolutionize agriculture by optimizing crop yields and resource usage through efficient data collection and analysis.',
+          'The note feature is a versatile digital tool that allows users to quickly capture and organize their thoughts, ideas, and important information in a user-friendly text format, enhancing productivity and facilitating easy retrieval.',
         listMenu: [
           {
             id: 1,
-            title: 'Yield Mapping',
-            description:
-              'Skyeye can generate accurate yield maps of a farm, which can help farmers optimize harvest plans and identify areas that need attention.',
-            image: 'YieldMapping',
+            title: 'Text Capture',
+            description: 'Capture and store textual information quickly and easily.',
+            image: 'NoteDetail',
           },
           {
             id: 2,
-            title: 'Weed Detection',
-            description:
-              'The platform can detect and map weeds, making it easier for farmers to target them with herbicides and minimize the use of chemicals.',
-            image: 'WeedDetection',
+            title: 'Formatting Tools',
+            description: 'Format and style your notes for improved readability and organization.',
+            image: 'NoteDetail',
           },
           {
             id: 3,
-            title: 'Soil Analysis',
+            title: 'Organization Options',
             description:
-              'Skyeye can provide detailed soil analysis, including information about nutrient levels, soil pH, and other factors that can impact crop growth.',
-            image: 'SoilAnalysis',
+              'Organize notes into categories, folders, or tags for efficient management.',
+            image: 'NoteDetail',
           },
           {
             id: 4,
-            title: 'Customized Reports',
-            description:
-              'Skyeye can generate customized reports that provide detailed insights into crop health, yield potential, and other factors that are relevant to a specific farm or crop type.',
-            image: 'CustomizedReports',
+            title: 'Sync Across Devices',
+            description: 'Access and update your notes seamlessly across multiple devices.',
+            image: 'NoteDetail',
           },
           {
             id: 5,
-            title: 'Crop Health Monitoring',
+            title: 'Quick Search',
             description:
-              "Skyeye's software can detect early signs of disease, nutrient deficiencies, or other issues that can impact crop health and yield potential.",
-            image: 'CropHealthMonitoring',
-          },
-          {
-            id: 6,
-            title: 'Plant Counting',
-            description:
-              'Skyeye can accurately count the number of plants in a field, which can help farmers estimate yields and plan harvests.',
-            image: 'PlantCounting',
+              'Easily find specific notes using search functionality for faster retrieval. ',
+            image: 'NoteDetail',
           },
         ],
       },
     },
     {
-      icon: (
-        <TelecommunicationIcon isActive={targetIndustryCategory.category === 'TELECOMMUNICATION'} />
-      ),
-      category: 'TELECOMMUNICATION',
-      description: 'improved Telecom tower management.',
+      icon: <TaskIcon />,
+      category: 'TASK',
+      description: 'Efficiency unleashed through tasks.',
       mainColor: '#1D588B',
       background: 'bg-telecommunication-content',
       imgBgColor: '#CCE6FF',
       content: {
         description:
-          'Drones and AI revolutionize agriculture by optimizing crop yields and resource usage through efficient data collection and analysis.',
+          'The task feature is a powerful tool that allows users to create, manage, and track their tasks and activities, helping them stay organized, prioritize their work, and increase productivity.',
         listMenu: [
           {
             id: 1,
-            title: 'Automatic Processing',
+            title: 'Task Creation',
             description: 'The algorithms automatically transform images into accurate 3D models.',
-            image: 'AutomaticProcessing',
+            image: 'TaskDetail',
           },
           {
             id: 2,
-            title: 'Inspection tool',
+            title: 'Priority Setting',
             description:
               'Auto detect abnormal on tower structure and posture (inclined, missing of joinning parts, corrosion, and generate warning/recommendation for repaire/maintenant decision with level of risk.',
-            image: 'InspectionTool',
+            image: 'TaskDetail',
           },
           {
             id: 3,
-            title: 'Advanced analysis',
-            description:
-              'Auto detect altitude, distance, dimension of equipment/object, exact position of equipment/object in 3D model, angle of equipment/object (Tilt, Azimuth, Plumb).',
-            image: 'AdvancedAnalysis',
+            title: 'Due Dates',
+            description: 'Set deadlines for tasks to manage time effectively.',
+            image: 'TaskDetail',
           },
           {
             id: 4,
-            title: 'Automatic Reports',
+            title: 'Progress Tracking',
+            description: 'Monitor the progress of tasks to stay on top of your workload.',
+            image: 'TaskDetail',
+          },
+          {
+            id: 5,
+            title: 'Task Collaboration',
             description:
-              'Combine notes, measurements and positional information into professional PDF',
-            image: 'AutomaticReports',
+              'Collaborate with others by assigning tasks, sharing updates, and coordinating efforts.',
+            image: 'TaskDetail',
           },
         ],
       },
     },
     {
-      icon: <ConstructionIcon isActive={targetIndustryCategory.category === 'CONSTRUCTION'} />,
-      category: 'CONSTRUCTION',
-      description: 'improved Telecom tower management.',
+      icon: <ScrumboardIcon />,
+      category: 'SCRUMBOARD',
+      description: 'Visualize progress, conquer tasks.',
       mainColor: '#DCAC65',
       background: 'bg-construction-content',
       imgBgColor: '#FFF5CC',
       content: {
-        description: '',
+        description:
+          'The scrumboard feature provides a visual and interactive platform for teams to track and manage their tasks, allowing them to collaborate effectively, monitor progress, and achieve project goals efficiently.',
         listMenu: [
           {
             id: 1,
-            title: 'Aerial Mapping',
+            title: 'Visual Organization',
             description:
-              'create detailed 2D and 3D maps of construction sites, which can help contractors track progress, identify potential issues, and communicate with stakeholders.',
-            image: 'AerialMapping',
+              'Arrange tasks and activities visually on a digital board for easy tracking and comprehension.',
+            image: 'ScrumboardDetail',
           },
           {
             id: 2,
-            title: 'Site Inspection',
+            title: 'Task Cards',
             description:
-              'The platform can provide high-resolution imagery and video of construction sites, which can help contractors identify potential safety hazards, monitor progress, and ensure compliance with regulations.',
-            image: 'SiteInspection',
+              'Create task cards with key details such as title, description, assignee, and status.',
+            image: 'ScrumboardDetail',
           },
           {
             id: 3,
-            title: 'Thermal Imagery',
+            title: 'Drag and Drop',
             description:
-              'capture thermal imagery of construction sites, which can help identify issues with insulation, detect leaks, and monitor equipment performance.',
-            image: 'ThermalImagery',
+              'Easily move task cards across different columns or categories to reflect progress.',
+            image: 'ScrumboardDetail',
           },
           {
             id: 4,
-            title: 'Stockpile Measurement',
+            title: 'Team Collaboration',
             description:
-              'The platform can accurately measure stockpiles of materials, such as sand and gravel, which can help contractors estimate costs and plan deliveries.',
-            image: 'StockpileMeasurement',
+              'Enable teams to collaborate and update task status in real-time for effective teamwork.',
+            image: 'ScrumboardDetail',
           },
           {
             id: 5,
-            title: 'Progress Tracking',
+            title: 'Agile Project Management',
             description:
-              'help contractors track progress over time by comparing aerial imagery of the construction site over different time periods.',
-            image: 'ProgressTracking',
+              'Facilitate agile project management methodologies, such as Scrum or Kanban, with customizable board columns and workflow visualization.',
+            image: 'ScrumboardDetail',
           },
         ],
       },
     },
     {
-      icon: <ForestryIcon isActive={targetIndustryCategory.category === 'FORESTRY'} />,
-      category: 'FORESTRY',
-      description: 'improved Telecom tower management.',
+      icon: <EmailIcon />,
+      category: 'MAIL',
+      description: 'Stay connected, communicate seamlessly.',
       mainColor: '#0A4A03',
       background: 'bg-forestry-content',
       imgBgColor: '#D3FCCF',
       content: {
-        description: '',
+        description:
+          'The mail feature enables users to send, receive, and manage electronic messages, facilitating efficient communication, information sharing, and collaboration across individuals and organizations.',
         listMenu: [
           {
             id: 1,
-            title: 'Forest Mapping',
-            description:
-              'The platform can generate detailed maps of forested areas, providing insights into forest structure and composition that can inform management decisions.',
-            image: 'ForestMapping',
+            title: 'Email Communication',
+            description: 'Send and receive electronic messages for efficient communication.',
+            image: 'EmailDetail',
           },
           {
             id: 2,
-            title: 'Tree Counting',
+            title: 'Inbox Organization',
             description:
-              'uses high-resolution aerial imagery to count trees and estimate forest density, providing accurate data for forest management and planning.',
-            image: 'TreeCounting',
+              'Manage and organize emails in folders, labels, or categories for easy access.',
+            image: 'EmailDetail',
           },
           {
             id: 3,
-            title: 'Health Assessment',
+            title: 'Attachment Support',
             description:
-              'The platform can detect and analyze tree health and vitality, identifying issues such as disease, pests, and stress that can impact forest growth and productivity.',
-            image: 'HealthAssessment',
+              'Attach files, documents, or media to emails for sharing and collaboration.',
+            image: 'EmailDetail',
           },
           {
             id: 4,
-            title: 'Volume Calculation',
+            title: 'Filtering and Sorting',
             description:
-              'Skyeye can calculate the volume of timber in a forest, providing valuable information for timber harvesting and management.',
-            image: 'VolumeCalculation',
+              'Use filters and sorting options to manage and prioritize incoming emails.',
+            image: 'EmailDetail',
           },
           {
             id: 5,
-            title: 'Customizable Outputs',
+            title: 'Address Book Integration',
             description:
-              'Auto generate customizable outputs such as georeferenced maps, volume estimates, and health assessments, allowing users to tailor the data to their specific needs',
-            image: 'CustomizableOutputs',
+              'Access a centralized contact list for quick and easy recipient selection.',
+            image: 'EmailDetail',
           },
         ],
       },
     },
-    // {
-    //   icon: 'powerline',
-    //   category: 'POWER LINE',
-    //   description: 'improved Telecom tower management.',
-    //   mainColor: '#FF8A00',
-    // },
+    {
+      icon: <ChatIcon />,
+      category: 'CHAT',
+      description: 'Connect, converse, collaborate.',
+      mainColor: '#0A4A03',
+      background: 'bg-agriculture-content',
+      imgBgColor: '#D3FCCF',
+      content: {
+        description:
+          'The chat feature enables real-time communication and collaboration between individuals or groups, fostering instant exchange of ideas, discussions, and effective teamwork.',
+        listMenu: [
+          {
+            id: 1,
+            title: 'Real-Time Communication',
+            description: 'Engage in instant messaging for immediate and direct conversations.',
+            image: 'ChatDetail',
+          },
+          {
+            id: 2,
+            title: 'Group Chat',
+            description:
+              'Create and participate in group conversations for collaborative discussions.',
+            image: 'ChatDetail',
+          },
+          {
+            id: 3,
+            title: 'Multimedia Sharing',
+            description:
+              'Share files, images, videos, or links within the chat for seamless collaboration.',
+            image: 'ChatDetail',
+          },
+          {
+            id: 4,
+            title: 'Emojis and Reactions',
+            description: 'Express emotions and reactions using emojis or predefined reactions.',
+            image: 'ChatDetail',
+          },
+          {
+            id: 5,
+            title: 'Message History',
+            description: 'Access and review past chat conversations for reference and continuity.',
+            image: 'ChatDetail',
+          },
+        ],
+      },
+    },
+    {
+      icon: <AIServiceIcon />,
+      category: 'AI SERVICE',
+      description: 'Intelligence amplified, possibilities expanded.',
+      mainColor: '#1D588B',
+      background: 'bg-telecommunication-content',
+      imgBgColor: '#CCE6FF',
+      content: {
+        description:
+          'The AI feature leverages advanced algorithms and machine learning to provide intelligent assistance, enabling users to automate tasks, gain insights, and access personalized recommendations for enhanced productivity and decision-making.',
+        listMenu: [
+          {
+            id: 1,
+            title: 'Intelligent Assistance',
+            description:
+              'Receive intelligent suggestions, recommendations, and insights to enhance productivity and decision-making.',
+            image: 'AIDetail',
+          },
+          {
+            id: 2,
+            title: 'Natural Language Understanding',
+            description:
+              'Communicate with the AI using natural language, making interactions more intuitive and user-friendly.',
+            image: 'AIDetail',
+          },
+          {
+            id: 3,
+            title: 'Personalization',
+            description:
+              'Adapt to user preferences and behaviors to provide tailored and personalized responses and recommendations.',
+            image: 'AIDetail',
+          },
+          {
+            id: 4,
+            title: 'Automation',
+            description:
+              'Automate repetitive tasks and workflows through AI-powered algorithms, saving time and effort.',
+            image: 'AIDetail',
+          },
+          {
+            id: 5,
+            title: 'Advanced Analytics',
+            description:
+              'Analyze large amounts of data and provide data-driven insights, enabling informed decision-making.',
+            image: 'AIDetail',
+          },
+        ],
+      },
+    },
   ];
 
   useEffect(() => {
