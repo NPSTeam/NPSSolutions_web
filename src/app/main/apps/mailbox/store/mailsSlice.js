@@ -16,19 +16,19 @@ export const getMails = createAsyncThunk(
   async (routeParams, { getState }) => {
     routeParams = routeParams || getState().mailboxApp.mails.routeParams;
 
-    let url = '/api/v1/mailbox/mails/';
+    let urlEmail = '/api/v1/mailbox/mails/';
     if (routeParams.folderHandle) {
-      url += routeParams.folderHandle;
+      urlEmail += routeParams.folderHandle;
     }
 
     if (routeParams.labelHandle) {
-      url += `labels/${routeParams.labelHandle}`;
+      urlEmail += `labels/${routeParams.labelHandle}`;
     }
 
     if (routeParams.filterHandle) {
-      url += `filters/${routeParams.filterHandle}`;
+      urlEmail += `filters/${routeParams.filterHandle}`;
     }
-    const response = await http.get(url);
+    const response = await http.get(urlEmail);
     const data = await response.data;
 
     return { data, routeParams };

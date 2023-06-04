@@ -14,6 +14,7 @@ import ChatAppConfig from './chat/ChatAppConfig';
 import ContactsAppConfig from './contacts/ContactsAppConfig';
 import MailboxAppConfig from './mailbox/MailboxAppConfig';
 import ServiceAIConfig from './service-ai/ServiceAIConfig';
+import NewHomeConfig from '../new-home/HomePageConfig';
 
 const npssolutionsAppConfig = [
   LoginConfig,
@@ -32,6 +33,7 @@ const npssolutionsAppConfig = [
   ContactsAppConfig,
   MailboxAppConfig,
   ServiceAIConfig,
+  NewHomeConfig,
 ];
 
 export default npssolutionsAppConfig;

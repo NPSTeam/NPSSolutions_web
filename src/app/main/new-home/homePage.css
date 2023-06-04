@@ -1,0 +1,135 @@
+/* Offer */
+.timeline {
+    margin: 0 auto;
+    max-width: 750px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr 3px 1fr;
+    color: #ffffff;
+    justify-content: center;
+  }
+  
+  .timeline__component {
+    padding: 20px;
+   
+    margin-top:auto;
+    margin-bottom: auto;
+  }
+  
+  .timeline__component--bg {
+    padding: 1.5em;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+  
+  /* LEAVE TILL LAST */
+  .timeline__component--bottom {
+    margin-bottom: 0;
+  }
+  
+  .timeline__middle {
+    position: relative;
+    background: #32E5F1;
+    
+  }
+  
+  .timeline__point {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+  .timeline__point::before,
+.timeline__point::after {
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+@keyframes ripple {
+  0% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
+  }
+  50% {
+      box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+.timeline__point::before,
+.timeline__point::after {
+    animation: ripple 3s infinite;
+}
+.timeline__point::before {
+  animation-delay: 0.9s;
+}
+.timeline__point::after {
+  animation-delay: 0.5s;
+}
+  /* LEAVE TILL LAST */
+  .timeline__point--bottom {
+    top: initial;
+    bottom: 0;
+  }
+  
+  .timeline__date--right {
+    text-align: right;
+  }
+  
+  .timeline__title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+  }
+  
+  .timeline__paragraph {
+    line-height: 1.5;
+    font-size: 14;
+  }
+  
+  /* User Manual */
+  .user-manual-icon{
+    position: relative;
+    text-decoration: none;
+    color: #696969;
+    font-size: 16px;
+    font-weight: bold;
+}
+.user-manual-icon:after{
+    content: "";
+    position: absolute;
+    background-color: #0A6589;
+    height: 4px;
+    width: 0;
+    bottom: -10px;
+    transition: 0.3s;
+    border-radius: 12px;
+}
+.user-manual-icon:hover ~ .hide  {
+  display: block;
+  position:absolute;
+  color: #0A6589;
+}
+.user-manual-icon:hover:after{
+  margin-right: auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+}
+.hide {
+  display:none;
+}
+
+.text-area:focus{
+border-color: #7a7a7a;
+}

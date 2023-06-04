@@ -1,0 +1,81 @@
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    border: 1px solid #000000;
+    opacity: 1;
+    background: #fff;
+  }
+  
+  .swiper-pagination-bullet-active {
+    color: #000;
+    background: #000;
+  }
+  
+
+  .thumb-slide {
+  }
+
+
+.swiper-container-product-skyeye {
+  position: unset;
+}
+
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+  position: absolute;
+    bottom: -3rem;
+  }
+
+  .swiper-container-product-skyeye-thumb:hover {
+    cursor: pointer;
+  }
+
+
+  // selector for swiper-button-prev and swiper-button-next in swiper-tab-data-labeling
+  .swiper-tab-data-labeling .swiper-button-prev {
+    margin-left: 5rem !important;
+  }

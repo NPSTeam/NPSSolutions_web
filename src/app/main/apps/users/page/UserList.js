@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import exportExcel from 'src/assets/icon/exportExcel.svg';
 import add from 'src/assets/icon/add.svg';
 import update from 'src/assets/icon/update.svg';
+import importIcon from 'src/assets/icon/importIcon.svg';
 import deleteIcon from 'src/assets/icon/deleteIcon.svg';
 
 import {
@@ -192,6 +193,8 @@ function UserList() {
     dispatch(setUsersByPagination({ pageSize: event.target.value }));
   };
 
+  const [selectedFile, setSelectedFile] = useState(null);
+
   return (
     <>
       {isLoadingListUser ? (
@@ -218,10 +221,17 @@ function UserList() {
               </Typography>
 
               <Box sx={{ display: 'flex' }}>
+                <Tooltip title={t('IMPORT_USER')}>
+                  <Button component="button" role="button" variant="contained" onClick={() => {}}>
+                    <img src={importIcon} alt="import" />
+                  </Button>
+                </Tooltip>
+
                 <Tooltip title={t('ADD_USER')}>
                   <Button
                     component="button"
                     role="button"
+                    sx={{ ml: 1 }}
                     variant="contained"
                     onClick={() => {
                       dispatch(setTargetUser({}));

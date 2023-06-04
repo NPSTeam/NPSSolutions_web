@@ -12,5 +12,7 @@
               "app/theme-layouts/*": ["./src/app/theme-layouts/*"],
               "app/AppContext": ["./src/app/AppContext"]
         }
-      }
+      },
+      "exclude": ["node_modules"]
+      
 }

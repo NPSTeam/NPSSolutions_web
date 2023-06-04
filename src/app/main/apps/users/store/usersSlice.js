@@ -171,6 +171,21 @@ export const exportUser = createAsyncThunk(
   }
 );
 
+export const importUser = createAsyncThunk(
+  'users/importUser',
+  async (params, { dispatch, getState }) => {
+    try {
+      const response = await http.post(url.importUser, {
+        fileBase64: params.fileBase64,
+      });
+      console.log('response', response);
+      dispatch(setUsersByPagination());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const {
   setTotalUser,
   setPageSize,

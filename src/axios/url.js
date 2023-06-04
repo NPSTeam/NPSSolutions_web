@@ -33,6 +33,7 @@ const url = {
   updateUser: '/api/v1/manager/user/update',
   deleteUser: (id) => `/api/v1/manager/user/${id}/delete`,
   exportUser: '/api/v1/manager/user/export-excel',
+  importUser: '/api/v1/user/import-user',
 
   // TEAMS
   teams: '/api/v1/teams/list',
