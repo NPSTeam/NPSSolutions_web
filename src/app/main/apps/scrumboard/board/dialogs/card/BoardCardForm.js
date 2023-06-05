@@ -187,7 +187,7 @@ function BoardCardForm(props) {
       const data = event.target.result;
       const attachment = {
         name: file.name,
-        type: 'file',
+        type: 'link',
         time: getUnixTime(new Date()),
         src: data,
       };
@@ -200,7 +200,7 @@ function BoardCardForm(props) {
       ...cardForm.attachments,
       {
         name: file.name,
-        type: 'file',
+        type: 'link',
         time: getUnixTime(new Date()),
         src: file,
       },
