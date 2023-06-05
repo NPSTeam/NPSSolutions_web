@@ -44,7 +44,12 @@ function BoardCard(props) {
   }
 
   return (
-    <Draggable draggableId={cardIdsConvert} index={index} type="card">
+    <Draggable
+      draggableId={cardIdsConvert}
+      index={index}
+      type="card"
+      isDragDisabled={card?.reviewed === 1}
+    >
       {(provided, snapshot) => (
         <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
           <StyledCard
@@ -80,6 +85,12 @@ function BoardCard(props) {
 
             <div className="flex justify-between h-48 px-16">
               <div className="flex items-center space-x-4">
+                {card?.reviewed === 1 && (
+                  <FuseSvgIcon size={16} color="red">
+                    heroicons-outline:lock-closed
+                  </FuseSvgIcon>
+                )}
+
                 {card?.subscribed && (
                   <FuseSvgIcon size={16} color="action">
                     heroicons-outline:eye

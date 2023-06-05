@@ -67,5 +67,6 @@ const locale = {
   YOU_MUST_ENTER_A_PHONE_NUMBER: 'Bạn phải nhập số điện thoại',
   YOU_MUST_ENTER_A_VALID_PHONE_NUMBER: 'Bạn phải nhập số điện thoại hợp lệ',
   EMAIL_OR_PHONE: 'Email / Số điện thoại',
+  DESCRIPTION: 'Mô tả',
 };
 export default locale;

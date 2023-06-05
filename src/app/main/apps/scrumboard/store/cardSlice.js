@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { showMessage } from 'app/store/fuse/messageSlice';
 import http from 'src/axios/ClassAxios';
 import { toast } from 'react-toastify';
 
@@ -18,18 +17,7 @@ export const updateCard = createAsyncThunk(
 
     const data = await response.data;
 
-    console.log('dataUpdateCard', data);
-
-    dispatch(
-      showMessage({
-        message: 'Card Saved',
-        autoHideDuration: 2000,
-        anchorOrigin: {
-          vertical: 'top',
-          horizontal: 'right',
-        },
-      })
-    );
+    toast.success('Card Updated');
 
     return data;
   }

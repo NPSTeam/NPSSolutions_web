@@ -8,7 +8,7 @@ class Http {
   constructor() {
     this.instance = axios.create({
       baseURL: process.env.REACT_APP_AXIOS_API,
-      timeout: 10000,
+      timeout: 30000,
     });
     this.refreshTokenRequest = null;
     this.instance.interceptors.request.use(

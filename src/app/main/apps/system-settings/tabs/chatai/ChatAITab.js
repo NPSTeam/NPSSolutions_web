@@ -18,57 +18,66 @@ export default function ChatAITab() {
   return (
     <main className="main">
       <InputContent />
-      {chatContent.map((content, index) => (
-        <form
-          name="chatAIForm"
-          noValidate
-          key={index}
-          // className="flex flex-col justify-center w-full mt-32"
-        >
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography width={100} textTransform="uppercase">
-              {content.role}
-            </Typography>
-            {content.role === 'user' && (
-              <TextField
-                //  minRows={6}
-                multiline
-                autoFocus
-                type="text"
-                //  error={!!errors.contentUser}
-                //  helperText={errors?.contentUser?.message}
-                variant="outlined"
-                required
-                fullWidth
-                defaultValue={content?.content}
-                onChange={() => {
-                  dispatch(updateChatContent({ data: content }));
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          maxHeight: '60rem',
+          overflowY: 'auto',
+        }}
+      >
+        {chatContent.map((content, index) => (
+          <form
+            name="chatAIForm"
+            noValidate
+            key={index}
+            // className="flex flex-col justify-center w-full mt-32"
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography width={100} textTransform="uppercase">
+                {content.role}
+              </Typography>
+              {content.role === 'user' && (
+                <TextField
+                  //  minRows={6}
+                  multiline
+                  autoFocus
+                  type="text"
+                  //  error={!!errors.contentUser}
+                  //  helperText={errors?.contentUser?.message}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  defaultValue={content?.content}
+                  onChange={() => {
+                    dispatch(updateChatContent({ data: content }));
+                  }}
+                />
+              )}
+              {content.role === 'assistant' && (
+                <TextField
+                  multiline
+                  autoFocus
+                  type="text"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  defaultValue={content?.content}
+                />
+              )}
+              <IconButton
+                onClick={() => {
+                  dispatch(setTargetId(content.id));
+                  dispatch(deleteChatContent());
                 }}
-              />
-            )}
-            {content.role === 'assistant' && (
-              <TextField
-                multiline
-                autoFocus
-                type="text"
-                variant="outlined"
-                required
-                fullWidth
-                defaultValue={content?.content}
-              />
-            )}
-            <IconButton
-              onClick={() => {
-                dispatch(setTargetId(content.id));
-                dispatch(deleteChatContent());
-              }}
-            >
-              <RemoveCircleOutlineIcon />
-            </IconButton>
-          </Box>
-          <Divider sx={{ margin: '12px 0' }} />
-        </form>
-      ))}
+              >
+                <RemoveCircleOutlineIcon />
+              </IconButton>
+            </Box>
+            <Divider sx={{ margin: '12px 0' }} />
+          </form>
+        ))}
+      </Box>
     </main>
   );
 }

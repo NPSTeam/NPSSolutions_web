@@ -4,6 +4,7 @@ import http from 'src/axios/ClassAxios';
 import url from 'src/axios/url';
 import { saveAs } from 'file-saver';
 import httpExport from 'src/axios/ClassAxiosExport';
+import { toast } from 'react-toastify';
 
 const initialState = {
   totalUser: 0,
@@ -16,6 +17,7 @@ const initialState = {
   columnSearch: '',
   isEditUser: false,
   isLoadingListUser: false,
+  listUserSkill: [],
 };
 
 const userSlice = createSlice({
@@ -49,6 +51,9 @@ const userSlice = createSlice({
     },
     setIsLoadingListUser: (state, action) => {
       state.isLoadingListUser = action.payload;
+    },
+    setListUserSkill: (state, action) => {
+      state.listUserSkill = action.payload;
     },
   },
 });
@@ -125,6 +130,18 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+export const getListUserSkill = createAsyncThunk(
+  'users/getListUserSkill',
+  async (params, { dispatch, getState }) => {
+    try {
+      const response = await http.get('/api/v1/manager/user/skills');
+      dispatch(setListUserSkill(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const deleteUser = createAsyncThunk(
   'users/deleteUser',
   async ({ id, showNotification, t }, { dispatch, getState }) => {
@@ -142,10 +159,9 @@ export const deleteUser = createAsyncThunk(
           dispatch(setUsersByPagination({ pageIndex: _pageIndex - 1 }));
         else dispatch(setUsersByPagination({ pageIndex: _pageIndex }));
 
-        showNotification(t('SUCCESSFUL_DELETE_USER'), 'success');
+        toast.success('Delete user successfully');
       })
       .catch((error) => {
-        showNotification(t('FAILED_DELETE_USER'), 'error');
         console.log(error);
       });
   }
@@ -175,13 +191,59 @@ export const importUser = createAsyncThunk(
   'users/importUser',
   async (params, { dispatch, getState }) => {
     try {
+      console.log('params', params);
       const response = await http.post(url.importUser, {
-        fileBase64: params.fileBase64,
+        fileBase64: params,
       });
       console.log('response', response);
       dispatch(setUsersByPagination());
     } catch (error) {
       console.log(error);
+    }
+  }
+);
+
+export const createUser = createAsyncThunk(
+  'users/importUser',
+
+  async (
+    {
+      birthDay,
+      confirmPassword,
+      email,
+      password,
+      phoneNumber,
+      username,
+      locked,
+      skills,
+      position,
+      fileContent,
+      fileName,
+    },
+    { dispatch, getState }
+  ) => {
+    try {
+      const authRes = await http.post('/api/v1/manager/user/create', {
+        username,
+        email,
+        password,
+        confirmPassword,
+        birthDay,
+        phoneNumber,
+        locked,
+        skills,
+        position,
+        fileContent,
+        fileName,
+      });
+
+      toast.success('Create user successfully');
+
+      dispatch(setUsersByPagination());
+    } catch (err) {
+      toast.error('Please try again');
+
+      console.log(err);
     }
   }
 );
@@ -197,5 +259,6 @@ export const {
   setListService,
   setIsEditUser,
   setIsLoadingListUser,
+  setListUserSkill,
 } = userSlice.actions;
 export default userSlice.reducer;

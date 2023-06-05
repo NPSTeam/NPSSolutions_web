@@ -18,8 +18,8 @@ function CardModel(data) {
     checklists: [],
     activities: [],
 
-    reviewed: false,
-    status: '',
+    reviewed: 0,
+    status: 0,
     priority: 0,
   });
 }

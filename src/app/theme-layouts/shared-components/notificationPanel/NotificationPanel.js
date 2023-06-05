@@ -6,6 +6,9 @@ import Typography from '@mui/material/Typography';
 import withReducer from 'app/store/withReducer';
 import { useSnackbar } from 'notistack';
 import { memo, useEffect } from 'react';
+import { over } from 'stompjs';
+
+import SockJS from 'sockjs-client';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
@@ -21,6 +24,7 @@ import {
   selectNotifications,
 } from './store/dataSlice';
 import reducer from './store';
+
 import {
   closeNotificationPanel,
   selectNotificationPanelState,
@@ -34,6 +38,8 @@ const StyledSwipeableDrawer = styled(SwipeableDrawer)(({ theme }) => ({
   },
 }));
 
+let stompClient = null;
+
 function NotificationPanel(props) {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -41,6 +47,41 @@ function NotificationPanel(props) {
   const notifications = useSelector(selectNotifications);
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const userId = useSelector(({ auth }) => auth.user.id);
+
+  const baseUrl = process.env.REACT_APP_AXIOS_API;
+
+  function onMessageReceived(payload) {
+    console.log('payload', payload);
+    dispatch(getNotifications());
+  }
+
+  function connect() {
+    const socket = new SockJS(`${baseUrl}/our-websocket`);
+    stompClient = over(socket);
+    stompClient.connect({}, function (frame) {
+      console.log(`Connected  ${frame}`);
+
+      stompClient.subscribe(`/notification/${userId}`, function (message) {
+        onMessageReceived(message);
+      });
+    });
+  }
+
+  function disconnect() {
+    if (stompClient !== null) {
+      stompClient.disconnect();
+    }
+    console.log('Disconnected');
+  }
+
+  useEffect(() => {
+    connect();
+    return () => {
+      disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     /*

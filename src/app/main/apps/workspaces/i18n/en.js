@@ -102,5 +102,6 @@ const locale = {
   PROJECT_TYPE: 'Project Type',
   LOGO: 'Logo',
   NEW_PROJECT: 'New Project',
+  DESCRIPTION: 'Description',
 };
 export default locale;

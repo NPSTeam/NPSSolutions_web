@@ -4,6 +4,7 @@ import http from 'src/axios/ClassAxios';
 import url from 'src/axios/url';
 import { saveAs } from 'file-saver';
 import httpExport from 'src/axios/ClassAxiosExport';
+import { toast } from 'react-toastify';
 
 const initialState = {
   totalWorkspace: 0,
@@ -113,13 +114,16 @@ export const addWorkspace = createAsyncThunk(
         code: data.code,
         address: data.address,
         registerServices: data.registerServices,
+        description: data.description,
+        fileName: data.fileName,
+        image: data.image,
+        technology: data.technology,
       })
       .then(() => {
         dispatch(setWorkspacesByPagination());
-        showNotification(t('SUCCESSFUL_ADD_WORKSPACE'), 'success');
+        toast.success(t('SUCCESSFUL_ADD_WORKSPACE'));
       })
       .catch((error) => {
-        showNotification(t('FAILED_ADD_WORKSPACE'), 'error');
         console.log(error);
       });
   }
@@ -134,6 +138,10 @@ export const updateWorkspace = createAsyncThunk(
         name: data.name,
         address: data.address,
         registerServices: data.registerServices,
+        technology: data.technology,
+        description: data.description,
+        fileName: data.fileName,
+        image: data.image,
       });
       dispatch(setWorkspacesByPagination());
       data.showNotification(data.t('SUCCESSFUL_EDIT_WORKSPACE'), 'success');

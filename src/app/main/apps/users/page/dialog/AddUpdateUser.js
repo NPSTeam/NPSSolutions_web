@@ -1,11 +1,23 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import _ from '@lodash';
-import { Button, DialogActions, DialogContent, DialogTitle, Icon, TextField } from '@mui/material';
+import {
+  Box,
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Icon,
+  Switch,
+  TextField,
+  Typography,
+} from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import { closeDialog } from 'app/store/fuse/dialogSlice';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
+import { styled } from '@mui/material/styles';
+
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { useNotification } from 'src/app/hook/hook';
@@ -15,7 +27,49 @@ const defaultValues = {
   username: '',
   email: '',
   phoneNumber: '',
+  locked: false,
 };
+
+const AntSwitch = styled(Switch)(({ theme }) => ({
+  width: 28,
+  height: 16,
+  padding: 0,
+  display: 'flex',
+  '&:active': {
+    '& .MuiSwitch-thumb': {
+      width: 15,
+    },
+    '& .MuiSwitch-switchBase.Mui-checked': {
+      transform: 'translateX(9px)',
+    },
+  },
+  '& .MuiSwitch-switchBase': {
+    padding: 2,
+    '&.Mui-checked': {
+      transform: 'translateX(12px)',
+      color: '#fff',
+      '& + .MuiSwitch-track': {
+        opacity: 1,
+        backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : '#1890ff',
+      },
+    },
+  },
+  '& .MuiSwitch-thumb': {
+    boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    transition: theme.transitions.create(['width'], {
+      duration: 200,
+    }),
+  },
+  '& .MuiSwitch-track': {
+    borderRadius: 16 / 2,
+    opacity: 1,
+    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+    boxSizing: 'border-box',
+  },
+}));
 
 export default function AddUpdateUser() {
   const { t } = useTranslation('users');
@@ -121,6 +175,32 @@ export default function AddUpdateUser() {
                 }}
                 variant="outlined"
               />
+            )}
+          />
+
+          <Controller
+            name="locked"
+            control={control}
+            render={({ field }) => (
+              <Box className="flex mb-10">
+                <Typography component="div" sx={{ ml: 1, mt: 1, margin: 'auto 0' }}>
+                  <Box component="span" sx={{ color: 'text.secondary' }}>
+                    Locked
+                  </Box>
+                </Typography>
+
+                <AntSwitch
+                  {...field}
+                  inputProps={{ 'aria-label': 'ant design' }}
+                  sx={{
+                    margin: 'auto 0',
+                    ml: 1,
+                  }}
+                  onChange={(e) => {
+                    setValue('locked', e.target.checked);
+                  }}
+                />
+              </Box>
             )}
           />
         </form>

@@ -298,7 +298,14 @@ function BoardCardForm(props) {
                 name="reviewed"
                 control={control}
                 render={({ field }) => (
-                  <AntSwitch {...field} inputProps={{ 'aria-label': 'ant design' }} />
+                  <AntSwitch
+                    {...field}
+                    inputProps={{ 'aria-label': 'ant design' }}
+                    checked={field.value === 1}
+                    onChange={(e) => {
+                      setValue('reviewed', e.target.checked ? 1 : 0);
+                    }}
+                  />
                 )}
               />
             </Grid>
@@ -318,7 +325,7 @@ function BoardCardForm(props) {
             </Grid>
             <Grid item xs={10}>
               <Controller
-                name="reviewed"
+                name="status"
                 control={control}
                 render={({ field }) => (
                   <Select

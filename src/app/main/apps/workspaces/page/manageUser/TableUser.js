@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Chip,
   CircularProgress,
   MenuItem,
   Paper,
@@ -203,6 +204,22 @@ export default function TableUser() {
       label: ['BIRTHDAY'],
       align: 'center',
     },
+    {
+      id: 'position',
+      numeric: false,
+      disablePadding: false,
+      sortable: true,
+      label: ['POSITION'],
+      align: 'center',
+    },
+    {
+      id: 'skills',
+      numeric: false,
+      disablePadding: false,
+      sortable: true,
+      label: ['SKIILS'],
+      align: 'center',
+    },
   ];
 
   // const location = useLocation();
@@ -372,6 +389,18 @@ export default function TableUser() {
                             <TableCell align="center">{row.email}</TableCell>
                             <TableCell align="center">{row.phoneNumber}</TableCell>
                             <TableCell align="center">{row.birthDay}</TableCell>
+                            <TableCell align="center">{row.position}</TableCell>
+                            <TableCell align="left">
+                              {row?.skills?.map((item) => (
+                                <Chip
+                                  label={item}
+                                  key={item + row.id}
+                                  variant="outlined"
+                                  className="ml-5"
+                                  sx={{}}
+                                />
+                              ))}
+                            </TableCell>
 
                             {/* <TableCell align="center">
                             <Button

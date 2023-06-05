@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Checkbox,
+  Chip,
   CircularProgress,
   Icon,
   Input,
@@ -87,6 +88,22 @@ const headCells = [
     disablePadding: false,
     sortable: true,
     label: ['USERNAME'],
+    align: 'center',
+  },
+  {
+    id: 'position',
+    numeric: false,
+    disablePadding: false,
+    sortable: true,
+    label: ['POSITION'],
+    align: 'center',
+  },
+  {
+    id: 'skills',
+    numeric: false,
+    disablePadding: false,
+    sortable: true,
+    label: ['SKILLS'],
     align: 'center',
   },
   // {
@@ -527,6 +544,18 @@ export default function AddExistUserToWorkspace() {
                               </Select>
                             </TableCell>
                             <TableCell align="center">{row.username}</TableCell>
+                            <TableCell align="center">{row.position}</TableCell>
+
+                            <TableCell align="center">
+                              {row?.skills?.map((item, indexChip) => (
+                                <Chip
+                                  label={item}
+                                  key={indexChip}
+                                  variant="outlined"
+                                  className="ml-5"
+                                />
+                              ))}
+                            </TableCell>
                             {/* <TableCell align="center">{row.email}</TableCell>
                             <TableCell align="center">{row.phoneNumber}</TableCell>
                             <TableCell align="center">{row.birthDay}</TableCell> */}
