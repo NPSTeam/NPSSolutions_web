@@ -45,7 +45,7 @@ const MailListItem = (props) => {
       dense
       button
       component={NavLinkAdapter}
-      to={props.mail.id}
+      to={props.mail.id.toString()}
       selected={checked}
       unread={props.mail.unread ? 1 : 0}
       className="items-start py-20 px-0 md:px-8 relative w-full"

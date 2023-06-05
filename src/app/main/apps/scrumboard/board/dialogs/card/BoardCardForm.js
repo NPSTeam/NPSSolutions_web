@@ -20,9 +20,22 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { Box } from '@mui/system';
-import { Divider, Input, ListItem, ListItemButton, ListItemText, Popover } from '@mui/material';
+import {
+  Divider,
+  Grid,
+  Input,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  MenuItem,
+  Popover,
+  Select,
+  Switch,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { openDialog } from 'app/store/fuse/dialogSlice';
+import { styled } from '@mui/material/styles';
+import TaskPrioritySelector from 'src/app/main/apps/tasks/task/TaskPrioritySelector';
 import { closeCardDialog, removeCard, selectCardData, updateCard } from '../../../store/cardSlice';
 import CardActivity from './activity/CardActivity';
 import CardAttachment from './attachment/CardAttachment';
@@ -38,6 +51,47 @@ import MembersMenu from './toolbar/MembersMenu';
 import CheckListMenu from './toolbar/CheckListMenu';
 import OptionsMenu from './toolbar/OptionsMenu';
 import DialogAddUrl from './attachment/DialogAddUrl';
+
+const AntSwitch = styled(Switch)(({ theme }) => ({
+  width: 28,
+  height: 16,
+  padding: 0,
+  display: 'flex',
+  '&:active': {
+    '& .MuiSwitch-thumb': {
+      width: 15,
+    },
+    '& .MuiSwitch-switchBase.Mui-checked': {
+      transform: 'translateX(9px)',
+    },
+  },
+  '& .MuiSwitch-switchBase': {
+    padding: 2,
+    '&.Mui-checked': {
+      transform: 'translateX(12px)',
+      color: '#fff',
+      '& + .MuiSwitch-track': {
+        opacity: 1,
+        backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : '#1890ff',
+      },
+    },
+  },
+  '& .MuiSwitch-thumb': {
+    boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    transition: theme.transitions.create(['width'], {
+      duration: 200,
+    }),
+  },
+  '& .MuiSwitch-track': {
+    borderRadius: 16 / 2,
+    opacity: 1,
+    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+    boxSizing: 'border-box',
+  },
+}));
 
 function BoardCardForm(props) {
   const dispatch = useDispatch();
@@ -103,14 +157,14 @@ function BoardCardForm(props) {
     dispatch(updateCard(newCard));
   }, 600);
 
-  useEffect(() => {
-    if (!card) {
-      return;
-    }
-    if (!_.isEqual(card, cardForm)) {
-      updateCardData(cardForm);
-    }
-  }, [card, cardForm, updateCardData]);
+  // useEffect(() => {
+  //   if (!card) {
+  //     return;
+  //   }
+  //   if (!_.isEqual(card, cardForm)) {
+  //     updateCardData(cardForm);
+  //   }
+  // }, [card, cardForm, updateCardData]);
 
   useEffect(() => {
     register('attachmentCoverId');
@@ -141,6 +195,16 @@ function BoardCardForm(props) {
       setValue('attachmentCoverId', attachment.id);
     };
     reader.readAsDataURL(file);
+
+    setValue('attachments', [
+      ...cardForm.attachments,
+      {
+        name: file.name,
+        type: 'file',
+        time: getUnixTime(new Date()),
+        src: file,
+      },
+    ]);
   };
 
   /// Popover
@@ -224,6 +288,78 @@ function BoardCardForm(props) {
               )}
             />
           </div>
+
+          <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+            <Grid item xs={2}>
+              <Typography>Reviewed</Typography>
+            </Grid>
+            <Grid item xs={10}>
+              <Controller
+                name="reviewed"
+                control={control}
+                render={({ field }) => (
+                  <AntSwitch {...field} inputProps={{ 'aria-label': 'ant design' }} />
+                )}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <Typography>Priority</Typography>
+            </Grid>
+            <Grid item xs={10}>
+              <Controller
+                control={control}
+                name="priority"
+                render={({ field }) => <TaskPrioritySelector {...field} />}
+              />
+            </Grid>
+
+            <Grid item xs={2}>
+              <Typography>Status</Typography>
+            </Grid>
+            <Grid item xs={10}>
+              <Controller
+                name="reviewed"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    labelId="select-label"
+                    className=" mb-24"
+                    MenuProps={{
+                      PaperProps: {
+                        sx: {
+                          height: '200px',
+                          backgroundColor: '#FFF',
+                          '& .MuiMenuItem-root': {
+                            padding: 1,
+                            fontSize: '1.7rem',
+                            color: '#0D3659',
+                            '&:hover': {
+                              backgroundColor: '#0A525E1A',
+                              color: '#0D3659',
+                              fontWeight: '800',
+                            },
+                          },
+                        },
+                      },
+                    }}
+                    sx={{
+                      height: '39px',
+                      color: '#000',
+                      fontSize: 'medium',
+                      border: '1.9px solid white',
+                      borderRadius: '5px',
+                    }}
+                  >
+                    <MenuItem value="1">New</MenuItem>
+                    <MenuItem value="2">Inprogress</MenuItem>
+                    <MenuItem value="3">Resolved</MenuItem>
+                    <MenuItem value="4">Closed</MenuItem>
+                  </Select>
+                )}
+              />
+            </Grid>
+          </Grid>
 
           <div className="w-full mb-24">
             <Controller
@@ -386,9 +522,10 @@ function BoardCardForm(props) {
             </div>
             <div>
               <CardComment
-                onCommentAdd={(comment) =>
-                  setValue('activities', [comment, ...cardForm.activities])
-                }
+                onCommentAdd={(comment) => {
+                  setValue('activities', [comment, ...cardForm.activities]);
+                  dispatch(updateCard(cardForm));
+                }}
               />
             </div>
           </div>
@@ -422,6 +559,15 @@ function BoardCardForm(props) {
             className="flex flex-row sm:flex-col items-center sm:py-8 rounded-12 w-full"
             sx={{ backgroundColor: 'background.default' }}
           >
+            <IconButton
+              className="order-last sm:order-first"
+              color="inherit"
+              onClick={(ev) => dispatch(updateCard(cardForm))}
+              size="large"
+            >
+              <FuseSvgIcon>heroicons-outline:check</FuseSvgIcon>
+            </IconButton>
+
             <IconButton
               className="order-last sm:order-first"
               color="inherit"

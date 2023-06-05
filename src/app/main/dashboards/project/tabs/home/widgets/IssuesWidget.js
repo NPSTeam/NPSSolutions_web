@@ -8,7 +8,8 @@ import { selectWidgets } from '../../../store/widgetsSlice';
 
 function IssuesWidget() {
   const widgets = useSelector(selectWidgets);
-  const { data, title } = widgets?.issues;
+
+  const { data, title } = widgets?.issue;
 
   return (
     <Paper className="flex flex-col flex-auto shadow rounded-2xl overflow-hidden">

@@ -17,6 +17,10 @@ function CardModel(data) {
     subscribed: true,
     checklists: [],
     activities: [],
+
+    reviewed: false,
+    status: '',
+    priority: 0,
   });
 }
 export default CardModel;

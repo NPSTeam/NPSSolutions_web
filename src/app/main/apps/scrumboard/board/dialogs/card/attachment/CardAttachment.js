@@ -7,6 +7,7 @@ import format from 'date-fns/format';
 import fromUnixTime from 'date-fns/fromUnixTime';
 import { useState } from 'react';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
+import history from '@history';
 
 function CardAttachment(props) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -30,7 +31,15 @@ function CardAttachment(props) {
           </div>
           <div className="flex flex-auto flex-col justify-center items-start min-w-0 px-16">
             <div className="flex items-center w-full">
-              <Typography className="text-16 font-semibold truncate shrink">
+              <Typography
+                className="text-16 font-semibold truncate shrink"
+                onClick={() => {
+                  history.push(props.item.src);
+                }}
+                sx={{
+                  cursor: 'pointer',
+                }}
+              >
                 {props.item.name}
               </Typography>
               {props.card.attachmentCoverId === props.item.id && (

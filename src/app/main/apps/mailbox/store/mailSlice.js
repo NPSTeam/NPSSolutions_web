@@ -7,15 +7,15 @@ import { getMails } from './mailsSlice';
 export const getMail = createAsyncThunk('mailboxApp/mail/getMail', async (routeParams) => {
   let url = '/api/v1/mailbox/mails/';
   if (routeParams.folderHandle) {
-    url += `${routeParams.folderHandle}/${routeParams.mailId}`;
+    url += `detail/${routeParams.mailId}`;
   }
 
   if (routeParams.labelHandle) {
-    url += `labels/${routeParams.labelHandle}/${routeParams.mailId}`;
+    url += `detail/${routeParams.mailId}`;
   }
 
   if (routeParams.filterHandle) {
-    url += `filters/${routeParams.filterHandle}/${routeParams.mailId}`;
+    url += `detail/${routeParams.mailId}`;
   }
 
   try {

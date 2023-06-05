@@ -64,12 +64,12 @@ const TaskPrioritySelector = forwardRef((props, ref) => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         className={clsx('min-w-96 px-12', className)}
-        sx={{ color: selectedOption.textColor, backgroundColor: selectedOption.bgColor }}
+        sx={{ color: selectedOption?.textColor, backgroundColor: selectedOption?.bgColor }}
       >
         <FuseSvgIcon className="mx-4" size={16}>
-          {selectedOption.icon}
+          {selectedOption?.icon}
         </FuseSvgIcon>
-        <span>{selectedOption.title}</span>
+        <span>{selectedOption?.title}</span>
       </Button>
       <Menu
         id="priority-menu"

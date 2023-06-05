@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import history from '@history';
 
 const Root = styled('div')(({ theme }) => ({
   '& > .logo-icon': {
@@ -13,11 +14,19 @@ const Root = styled('div')(({ theme }) => ({
       easing: theme.transitions.easing.easeInOut,
     }),
   },
+  '&:hover': {
+    cursor: 'pointer',
+  },
 }));
 
 function Logo() {
   return (
-    <Root className="flex items-center">
+    <Root
+      className="flex items-center"
+      onClick={() => {
+        history.push('/homepage');
+      }}
+    >
       <img className="logo-icon w-32 h-32" src="assets/images/logo/logo.svg" alt="logo" />
 
       <div

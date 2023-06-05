@@ -6,6 +6,8 @@ import { labelColorDefs } from './labelColors';
 
 function MailLabel(props) {
   const { labelId } = props;
+
+  console.log('labelColorDefs', labelColorDefs);
   const label = useSelector((state) => selectLabelById(state, labelId));
   if (!label) {
     return null;
@@ -14,7 +16,7 @@ function MailLabel(props) {
     <Chip
       label={label.title}
       classes={{
-        root: clsx('h-24 border-0', props.className, labelColorDefs[label.color].combined),
+        root: clsx('h-24 border-0', props.className, labelColorDefs[label?.color]?.combined),
         label: 'px-12 py-4 text-12 font-medium leading-none',
       }}
     />

@@ -15,6 +15,8 @@ import { labelColorDefs } from './labelColors';
 function MailLabelsMenu(props) {
   const { className, onChange, labels } = props;
   const [selectedLabels, setSelectedLabels] = useState(labels);
+
+  console.log('selectedLabels', selectedLabels);
   const labelsAll = useSelector(selectLabels);
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -55,11 +57,11 @@ function MailLabelsMenu(props) {
                 className="px-8"
                 key={label.id}
                 onClick={(ev) => {
-                  onChange(_.xor(selectedLabels, [label.id]));
+                  onChange(_.xor(selectedLabels, [label?.id]));
                 }}
               >
-                <Checkbox checked={selectedLabels.includes(label.id)} />
-                <ListItemText className="mx-8">{label.title}</ListItemText>
+                <Checkbox checked={selectedLabels?.includes(label?.id)} />
+                <ListItemText className="mx-8">{label?.title}</ListItemText>
                 <ListItemIcon className="min-w-24">
                   <FuseSvgIcon className={labelColorDefs[label?.color]?.text}>
                     heroicons-outline:tag
