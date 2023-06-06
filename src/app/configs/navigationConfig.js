@@ -12,11 +12,11 @@ const navigationConfig = [
     title: 'Dashboards',
     type: 'group',
     icon: 'heroicons-outline:home',
-    translate: 'DASHBOARDS',
+    translate: 'WORKSPACE',
     children: [
       {
         id: 'dashboards.project',
-        title: 'Project',
+        title: 'Workspace',
         type: 'item',
         icon: 'heroicons-outline:clipboard-check',
         url: '/dashboards/project',

@@ -4,11 +4,17 @@ import { useSelector } from 'react-redux';
 import Paper from '@mui/material/Paper';
 import { motion } from 'framer-motion';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
+import history from '@history';
 import { selectWidgets } from '../../../store/widgetsSlice';
 
 function TeamMembersWidget(props) {
   const widgets = useSelector(selectWidgets);
   const members = widgets?.teamMembers;
+
+  const targetWorkspace = useSelector(
+    ({ projectDashboardApp }) => projectDashboardApp.workspaces.targetWorkspace
+  );
+
   const container = {
     show: {
       transition: {
@@ -34,7 +40,15 @@ function TeamMembersWidget(props) {
           component={motion.div}
           variants={item}
           className="flex flex-col flex-auto items-center shadow rounded-2xl overflow-hidden"
+          sx={{
+            '&:hover': {
+              cursor: 'pointer',
+            },
+          }}
           key={member.id}
+          onClick={() =>
+            history.push(`/apps/project/${targetWorkspace}/profile-detail/${member.id}`)
+          }
         >
           <div className="flex flex-col flex-auto w-full p-32 text-center">
             <div className="w-128 h-128 mx-auto rounded-full overflow-hidden">

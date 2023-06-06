@@ -1,13 +1,11 @@
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from '@lodash';
-import Button from '@mui/material/Button';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { selectUser } from 'app/store/userSlice';
 import { Chip } from '@mui/material';
-import { getWorkspace, setTargetWorkspace } from './store/workspacesSlice';
+import { setTargetWorkspace } from './store/workspacesSlice';
 
 function ProjectDashboardAppHeader(props) {
   const dispatch = useDispatch();
@@ -21,10 +19,6 @@ function ProjectDashboardAppHeader(props) {
 
   console.log('listWorkspace', listWorkspace);
   const user = useSelector(selectUser);
-
-  useEffect(() => {
-    dispatch(getWorkspace({ dispatch }));
-  }, [dispatch]);
 
   if (_.isEmpty(listWorkspace)) {
     return null;
@@ -55,24 +49,6 @@ function ProjectDashboardAppHeader(props) {
               </Typography>
             </div>
           </div>
-        </div>
-        <div className="flex items-center mt-24 sm:mt-0 sm:mx-8 space-x-12">
-          <Button
-            className="whitespace-nowrap"
-            variant="contained"
-            color="primary"
-            startIcon={<FuseSvgIcon size={20}>heroicons-solid:mail</FuseSvgIcon>}
-          >
-            Messages
-          </Button>
-          <Button
-            className="whitespace-nowrap"
-            variant="contained"
-            color="secondary"
-            startIcon={<FuseSvgIcon size={20}>heroicons-solid:cog</FuseSvgIcon>}
-          >
-            Settings
-          </Button>
         </div>
       </div>
       <div className="flex items-center">

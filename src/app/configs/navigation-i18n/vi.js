@@ -7,7 +7,6 @@ const localeNPSSolutions = {
   NOTES: 'Ghi chú',
   CALENDAR: 'Lịch',
   TASKS: 'Nhiệm vụ',
-  SCRUM_BOARD: 'Bảng Scrum',
   MANAGE_ITEMS_APP: 'Quản lý chức năng hệ thống',
   MANAGE_ROLES_APP: 'Quản lý phân quyền hệ thống',
   MANAGE_ROLE_FOR_ITEM: 'Phân quyền theo chức năng',
@@ -17,6 +16,8 @@ const localeNPSSolutions = {
   CONTACTS: 'Danh bạ',
   MAIL: 'Thư',
   SERVICEAI: 'Dịch vụ AI',
+  SCRUMBOARD: 'Bảng Scrum',
+  NPSSOLUTIONS_ACCESSIBILITY: 'Truy cập',
 };
 
 export default localeNPSSolutions;

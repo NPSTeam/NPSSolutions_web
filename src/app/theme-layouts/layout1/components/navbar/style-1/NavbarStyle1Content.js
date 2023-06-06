@@ -58,7 +58,7 @@ function NavbarStyle1Content(props) {
       </StyledContent>
 
       <Typography component="div" className="flex items-end">
-        <p className="text-center ру-8 text-15 border-1 w-full">NPSSolutions Web v1.0.0</p>
+        <p className="text-center ру-8 text-15 border-1 w-full">NPSSolutions Web v3.1.9</p>
       </Typography>
     </Root>
   );
