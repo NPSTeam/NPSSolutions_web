@@ -95,6 +95,8 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 
 function BoardCardForm(props) {
   const dispatch = useDispatch();
+  const user = useSelector(({ auth }) => auth.user);
+
   const fileInputRef = useRef();
   const { t } = useTranslation('scrumboardApp');
   const [anchorEl, setAnchorEl] = useState(null);
@@ -111,7 +113,7 @@ function BoardCardForm(props) {
 
   const cardForm = watch();
 
-  console.log('cardForm', cardForm);
+  console.log('user', user);
   console.log('card', card);
 
   function convertImgToBase64URL(url, callback) {
@@ -290,25 +292,29 @@ function BoardCardForm(props) {
           </div>
 
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-            <Grid item xs={2}>
-              <Typography>Reviewed</Typography>
-            </Grid>
-            <Grid item xs={10}>
-              <Controller
-                name="reviewed"
-                control={control}
-                render={({ field }) => (
-                  <AntSwitch
-                    {...field}
-                    inputProps={{ 'aria-label': 'ant design' }}
-                    checked={field.value === 1}
-                    onChange={(e) => {
-                      setValue('reviewed', e.target.checked ? 1 : 0);
-                    }}
+            {user.items.includes('REVIEW_TASK_SCRUM') && (
+              <>
+                <Grid item xs={2}>
+                  <Typography>Reviewed</Typography>
+                </Grid>
+                <Grid item xs={10}>
+                  <Controller
+                    name="reviewed"
+                    control={control}
+                    render={({ field }) => (
+                      <AntSwitch
+                        {...field}
+                        inputProps={{ 'aria-label': 'ant design' }}
+                        checked={field.value === 1}
+                        onChange={(e) => {
+                          setValue('reviewed', e.target.checked ? 1 : 0);
+                        }}
+                      />
+                    )}
                   />
-                )}
-              />
-            </Grid>
+                </Grid>
+              </>
+            )}
             <Grid item xs={2}>
               <Typography>Priority</Typography>
             </Grid>

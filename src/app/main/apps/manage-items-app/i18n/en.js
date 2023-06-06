@@ -25,5 +25,6 @@ const locale = {
   YES: 'Yes',
   DELETE_ITEM_APP: 'Delete item app',
   EDIT: 'Edit',
+  YOU_MUST_ENTER_A_NAME: 'You must enter a name',
 };
 export default locale;
